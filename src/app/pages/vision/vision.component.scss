@@ -1,0 +1,149 @@
+.vision{
+    background-color: #e0e0e0;
+    padding-bottom: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-half {
+    flex: 1;
+    display: flex;
+  }
+  
+  .left-half {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1d267d;
+    margin: 70px 10px 10px 10px;
+  }
+  
+  .text-container {
+    text-align: left;
+    color: white;
+  }
+  
+  .line1 {
+    font-size: 30px;
+  }
+  
+  .line2 {
+    font-size: 60px;
+    font-weight: bold;
+  }
+  
+  .line3 {
+    font-size: 19px;
+  }
+  
+  .right-half {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 70px 10px 10px 10px;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .bottom-half {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    margin: 50px;
+  }
+  
+  .centered-text {
+    text-align: center;
+    color: #0c134f;
+    margin: 0px 120px;
+    text-align: justify;
+  }
+
+  @media screen and (max-width: 1154px) {
+
+    .line1 {
+        font-size: 20px;
+    }
+      
+    .line2 {
+        font-size: 45px;
+        font-weight: bold;
+    }
+      
+    .line3 {
+        font-size: 13px;
+    }
+
+    
+  }
+
+  @media screen and (max-width: 947px) {
+    .top-half {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .line1 {
+        font-size: 30px;
+      }
+      
+      .line2 {
+        font-size: 60px;
+        font-weight: bold;
+      }
+      
+      .line3 {
+        font-size: 19px;
+      }
+
+      .left-half {
+        flex: 1;
+        width: 510px;
+        height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1d267d;
+        margin: 70px 10px 10px 10px;
+      }
+
+      .centered-text {
+        margin: 0;
+        text-align: center;
+      }
+  }
+
+  @media screen and (max-width: 522px) {
+
+    .line1 {
+        font-size: 20px;
+    }
+      
+    .line2 {
+        font-size: 35px;
+        font-weight: bold;
+    }
+      
+    .line3 {
+        font-size: 13px;
+    }
+
+    .left-half {
+        width: auto;
+        height: auto;
+        padding: 10px 40px;
+      }
+
+    
+  }
+  
