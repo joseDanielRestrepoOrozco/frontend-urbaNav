@@ -12,8 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { MisionComponent } from './pages/mision/mision.component';
-import { VisionComponent } from './pages/vision/vision.component';
 
 
 @NgModule({
@@ -29,9 +27,7 @@ import { VisionComponent } from './pages/vision/vision.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    MisionComponent,
-    VisionComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
