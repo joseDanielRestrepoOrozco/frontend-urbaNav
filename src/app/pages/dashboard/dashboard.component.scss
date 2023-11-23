@@ -7,22 +7,34 @@ $request-trip-text: #ffffff;
   .background-image {
     background: url($background-image-path) no-repeat center center;
     background-size: cover;
-    height: 80vh;
+    
     
     display: flex;
-    justify-content: space-around; // This will put space between the boxes
-    flex-direction: row-reverse; // This will put the register box on the right
-    align-items: center; // This will vertically center the boxes
-    padding: 50px 0;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 100px 0;
+
+    @media (max-width: 1070px) {
+      flex-direction: column-reverse;
+      justify-content: center;
+    }
+
+    @media (max-height: 585px) {
+      padding: 140px 0;
+    }
 
     .action-text {
       color: white;
-      // margin-top: 20px;
       padding: 5px;
       padding-bottom: 15px;
       font-weight: bold;
       text-align: center;
       width: 35vh;
+
+      @media (max-width: 1070px) {
+        width: auto;
+      }
     }
 
     .action-button {
@@ -49,6 +61,11 @@ $request-trip-text: #ffffff;
         right: 100px;
         top: 50px;
       }
+
+      @media (max-width: 1070px) {
+        font-size: 16px;
+        width: auto;
+      }
     }
 
     .request-trip-box {
@@ -60,14 +77,26 @@ $request-trip-text: #ffffff;
       justify-content: center;
       padding: 25px;
       margin-top: 200px;
-      margin-right: 270px;
+      margin-right: 240px;
 
       border-radius: 15px;
-      order: 2
+      order: 2;
+
+      @media (max-width: 1070px) {
+        font-size: 1.2em;
+        padding: 25px;
+        margin-right: 31px;
+        width: 57%;
+        margin-top: 0px;
+        order: 1;
+      }
+
     }
+    
+    
 
     .register-box {
-      font-size: 1.5em;
+      font-size: 1.3em;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -78,10 +107,25 @@ $request-trip-text: #ffffff;
       flex: 0 0 auto;
       width: 30%;
       padding: 25px;
-      margin: 15px;
-      margin-right: 40px;
+      margin: 15px 15px 15px 0px;
+      margin-right: 60px;
       border-radius: 15px;
-      order: 1
+      order: 1;
+
+      @media (max-width: 1319px) {
+        width: 34%;
+      }
+      
+      @media (max-width: 777px) {
+        width: 60%;
+      }
+
+      @media (max-width: 1070px) {
+        width: 60%;
+        font-size: 1.0em;
+        margin-right: 40px;
+        order: 2;
+      }
     }
 
   }
@@ -92,10 +136,20 @@ $request-trip-text: #ffffff;
     padding-top: 50px;
     display: flex;
     justify-content: space-around;
+
+    @media (max-width: 968px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
   
     .feature-item {
       text-align: center;
-      max-width: 200px;
+      max-width: 295px;
+
+      @media (max-width: 968px) {
+        max-width: 415px;
+      }
   
       img {
         width: 100%;
@@ -104,14 +158,26 @@ $request-trip-text: #ffffff;
         object-fit: contain;
         margin-bottom: 10px;
         border-radius: 4px;
+
+        @media (max-width: 968px) {
+          max-height: 200px;
+        }
       }
 
       h3 {
         margin-top: 10px;
+
+        @media (max-width: 968px) {
+          font-size: 1.5em;
+        }
       }
 
       p {
         font-size: 0.9em;
+
+        @media (max-width: 968px) {
+          font-size: 1.1em;
+        }
       }
     }
   }
