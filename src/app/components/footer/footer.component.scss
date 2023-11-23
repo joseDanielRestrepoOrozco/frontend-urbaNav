@@ -1,0 +1,24 @@
+.footer {
+    background-color: #111b70;
+    color: #fff;
+    padding: 1rem 0;
+    
+    .nav {
+      .nav-link {
+        color: #fff;
+        &:hover {
+          color: lighten(#fff, 10%);
+        }
+      }
+    }
+  
+    .copyright {
+      a {
+        color: #fff;
+        &:hover {
+          color: lighten(#fff, 10%);
+        }
+      }
+    }
+  }
+  
