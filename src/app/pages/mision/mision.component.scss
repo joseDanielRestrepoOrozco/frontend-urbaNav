@@ -23,7 +23,6 @@
     overflow: visible; // Permitir que los contenidos se salgan de la tarjeta
     position: relative; // Cambiado a posición relativa
     margin: 10px;
-    max-width: 300px;
     }
   
   .margin-top-20 {
@@ -126,4 +125,8 @@
     position: absolute;
     left: -40px;
     }
+
+    .card {
+      max-width: 300px;
+      }
 }

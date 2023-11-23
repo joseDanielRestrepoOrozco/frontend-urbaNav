@@ -15,5 +15,26 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'mision',         component: MisionComponent},
-    { path: 'vision',         component: VisionComponent}
+    { path: 'vision',         component: VisionComponent},
+
+    {path: 'vehicles',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule )
+        }]},
+
+        {path: 'users',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule )
+        }]},
+
+        {path: 'roles',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule )
+        }]}
 ];
