@@ -1,63 +1,107 @@
 $background-image-path: "https://img.lalr.co/cms/2019/04/19105226/Uber.jpg?size=md";
 $feature-background-color: #e0e0e0;
+$request-trip-bg: #8e44ad;
+$request-trip-text: #ffffff;
 
 .dashboard-container {
   .background-image {
     background: url($background-image-path) no-repeat center center;
     background-size: cover;
+    height: 80vh;
+    
+    display: flex;
+    justify-content: space-around; // This will put space between the boxes
+    flex-direction: row-reverse; // This will put the register box on the right
+    align-items: center; // This will vertically center the boxes
     padding: 50px 0;
 
-    .action-buttons {
+    .action-text {
+      color: white;
+      // margin-top: 20px;
+      padding: 5px;
+      padding-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+      width: 35vh;
+    }
+
+    .action-button {
+      background-color: $request-trip-bg;
+      color: $request-trip-text;
+      border: none;
+      border-radius: 10px;
+      padding: 25px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.1s ease;
+
+      &:hover {
+        background-color: darken($request-trip-bg, 10%);
+      }
+
+      &:active {
+        background-color: darken($request-trip-bg, 15%);
+      }
+
+      .request-trip-btn {
+        position: absolute;
+        right: 100px;
+        top: 50px;
+      }
+    }
+
+    .request-trip-box {
+      font-size: 1.8em;
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 25px;
+      margin-top: 200px;
+      margin-right: 270px;
 
-      button {
-        padding: 10px 20px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        color: white;
-        font-weight: bold;
-
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-
-      .request-trip-btn {
-        background-color: #ff6f00; // an example color
-      }
-
-      .register-btn {
-        background-color: #0d47a1; // an example color
-      }
-
-      .action-text {
-        color: white;
-        margin-top: 20px;
-        font-size: 1.5em;
-        text-align: center;
-      }
+      border-radius: 15px;
+      order: 2
     }
+
+    .register-box {
+      font-size: 1.5em;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #111b70;
+
+      flex: 0 0 auto;
+      width: 30%;
+      padding: 25px;
+      margin: 15px;
+      margin-right: 40px;
+      border-radius: 15px;
+      order: 1
+    }
+
   }
 
   .features {
     background-color: $feature-background-color;
     padding: 20px 0;
+    padding-top: 50px;
     display: flex;
     justify-content: space-around;
-
+  
     .feature-item {
       text-align: center;
       max-width: 200px;
-
+  
       img {
         width: 100%;
         height: auto;
+        max-height: 150px;
+        object-fit: contain;
         margin-bottom: 10px;
         border-radius: 4px;
       }
