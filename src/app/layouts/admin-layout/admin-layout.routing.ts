@@ -36,5 +36,13 @@ export const AdminLayoutRoutes: Routes = [
         {
             path: '',
             loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule )
-        }]}
+        }]},
+
+        {path: 'pqrs',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule )
+        }]},
+
 ];
