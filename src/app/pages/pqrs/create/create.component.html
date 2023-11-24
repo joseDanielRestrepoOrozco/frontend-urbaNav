@@ -1,1 +1,72 @@
-<p>create works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 *ngIf="creationMode" class="mb-0">Crear Pqrs</h3>
+                    <h3 *ngIf="!creationMode" class="mb-0">Actualizar Pqrs</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formGroupValidator">
+
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Tipo:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="text" formControlName="type">
+                                <div *ngIf="formGroupValidatorData.type.errors && (formGroupValidatorData.type.dirty || formGroupValidatorData.type.touched)">
+                                    <strong *ngIf="formGroupValidatorData.type.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Descripción:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="text" formControlName="description">
+                                <div *ngIf="formGroupValidatorData.description.errors && (formGroupValidatorData.description.dirty || formGroupValidatorData.description.touched)">
+                                    <strong *ngIf="formGroupValidatorData.description.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Fecha:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="date" formControlName="date">
+                                <div *ngIf="formGroupValidatorData.date.errors && (formGroupValidatorData.date.dirty || formGroupValidatorData.date.touched)">
+                                    <strong *ngIf="formGroupValidatorData.date.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-9">
+                                <button *ngIf="creationMode" type="button" class="btn btn-primary btn-block"
+                                    (click)="create()">Crear</button>
+                                <button *ngIf="!creationMode" type="button" class="btn btn-primary btn-block"
+                                    (click)="update()">Actualizar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PqrsRoutingModule } from './pqrs-routing.module';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     CommonModule,
-    PqrsRoutingModule
+    PqrsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PqrsModule { }
