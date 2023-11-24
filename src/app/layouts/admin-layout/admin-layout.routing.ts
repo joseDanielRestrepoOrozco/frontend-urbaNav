@@ -45,4 +45,11 @@ export const AdminLayoutRoutes: Routes = [
             loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule )
         }]},
 
+        {path: 'payment-methods',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/payment-methods/payment-methods.module').then(m => m.PaymentMethodsModule )
+        }]},
+
 ];

@@ -12,8 +12,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { ListComponent } from './pages/paymentMethods/list/list.component';
-import { CreateComponent } from './pages/paymentMethods/create/create.component';
 
 
 @NgModule({
@@ -29,9 +27,7 @@ import { CreateComponent } from './pages/paymentMethods/create/create.component'
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    ListComponent,
-    CreateComponent
+    AuthLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
