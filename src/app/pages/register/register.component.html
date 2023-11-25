@@ -18,19 +18,14 @@
 <!-- Page content -->
 <div class="container mt--8 pb-5">
   <div class="row justify-content-center align-items-center">
-    <div class="col-md-8 col-lg-6 col-xl-4"> <!-- Ajusta las clases según tus necesidades -->
+    <div class="col-md-8 col-lg-6 col-xl-4"> 
       <div class="card bg-white shadow border-0">
         <div class="card-header bg-transparent text-center">
           <h2 class="mt-2 mb-4 text-black">¿Cómo te quieres registrar?</h2>
         </div>
-        <div class="card-body px-lg-5 py-lg-3 d-flex justify-content-center"> <!-- Utiliza d-flex y justify-content-center para centrar los botones -->
-          <button type="button" class="btn btn-primary mr-2" onclick="changeColor(this)">Cliente</button>
+        <div class="card-body px-lg-5 py-lg-3 d-flex justify-content-center"> 
+          <button type="button" class="btn btn-primary mr-2" onclick="changeColor(this)" (click)="registrocliente()">Cliente</button>
           <button type="button" class="btn btn-primary" onclick="changeColor(this)">Conductor</button>
-        </div>
-        <div class="card-body px-lg-5 py-lg-3">
-          <form role="form">
-            <!-- Aquí van los campos del formulario -->
-          </form>
         </div>
       </div>
     </div>
