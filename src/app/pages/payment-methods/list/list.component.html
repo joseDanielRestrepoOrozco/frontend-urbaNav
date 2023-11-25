@@ -1,0 +1,56 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body"></div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">Métodos de pago</h3>
+              </div>
+              <div class="col text-right">
+                <button class="btn btn-success" (click)="create()">Crear</button>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Número de tarjeta</th>
+                  <th scope="col">CVV</th>
+                  <th scope="col">Fecha expiración</th>
+                  <th scope="col">Usuario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actualPaymentmethod of paymentmethods">
+                    <th>{{actualPaymentmethod._id}}</th>
+                    <th>{{actualPaymentmethod.type}}</th>
+                    <th>{{actualPaymentmethod.cardNumber}}</th>
+                    <th>{{actualPaymentmethod.cardCVV}}</th>
+                    <th>{{actualPaymentmethod.expiryDate}}</th>
+                    <th>{{actualPaymentmethod.user?.name}}</th>
+                  <th>
+                    <button type="button" class="btn btn-primary" (click)="edit(actualPaymentmethod._id)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actualPaymentmethod._id)">Eliminar</button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
