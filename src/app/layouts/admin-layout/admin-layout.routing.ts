@@ -52,4 +52,11 @@ export const AdminLayoutRoutes: Routes = [
             loadChildren: () => import('src/app/pages/payment-methods/payment-methods.module').then(m => m.PaymentMethodsModule )
         }]},
 
+        {path: 'role-permissions',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/role-permissions/role-permissions.module').then(m => m.RolePermissionsModule )
+        }]},
+
 ];
