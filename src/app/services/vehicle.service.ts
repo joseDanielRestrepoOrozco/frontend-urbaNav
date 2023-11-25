@@ -25,7 +25,6 @@ export class VehicleService {
 
   update(newVehicle: Vehicle){
     console.log(newVehicle);
-    
     return this.http.put(`${environment.url_ms_urbannav}/vehicles/${newVehicle.id}`, newVehicle);
   }
 

@@ -34,6 +34,7 @@ export class CreateComponent implements OnInit {
 
   formBuilding(){
     this.formGroupValidator=this.formBuilder.group({
+      _id : [''],
       name : ['',[Validators.required]],
       description : ['',[Validators.required]]
     });
@@ -55,6 +56,7 @@ export class CreateComponent implements OnInit {
       this.theRole=jsonResponse
 
       this.formGroupValidator.patchValue({
+        _id: this.theRole._id,
         name: this.theRole.name,
         description: this.theRole.description
       });
@@ -84,7 +86,7 @@ export class CreateComponent implements OnInit {
   }
 
   update(){
-    this.rolesService.update(this.theRole).subscribe((jsonResponse: any) => {
+    this.rolesService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
       Swal.fire({
         title: 'Actualizando',
         icon: 'success',

@@ -32,13 +32,14 @@ export class CreateComponent implements OnInit {
       this.creationMode = false;
       this.show(this.rutaActiva.snapshot.params.id);
     }
-    if (this.theVehicle.id) {
-      this.show(this.theVehicle.id);
-    }
+    // if (this.theVehicle.id) {
+    //   this.show(this.theVehicle.id);
+    // }
   }
 
   formBuilding() {
     this.formGroupValidator = this.formBuilder.group({
+      id: [0, [Validators.required]],
       brand: ['', [Validators.required]],
       model: ['', [Validators.required]],
       year: ['', [Validators.required]],
@@ -72,8 +73,8 @@ export class CreateComponent implements OnInit {
       this.theVehicle = jsonResponse
       this.theVehicle.year = this.transformatDate(this.theVehicle.year);
 
-      // Asigna los valores del usuario al formulario
       this.formGroupValidator.patchValue({
+        id : this.theVehicle.id,
         brand: this.theVehicle.brand,
         model: this.theVehicle.model,
         year: this.theVehicle.year,
@@ -108,8 +109,7 @@ export class CreateComponent implements OnInit {
   }
 
   update() {
-    this.theVehicle = this.vehicleData();
-    this.vehiclesService.update(this.theVehicle).subscribe((jsonResponse: any) => {
+    this.vehiclesService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
       Swal.fire({
         title: 'Actualizando',
         icon: 'success',
