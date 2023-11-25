@@ -15,6 +15,7 @@ export class CreateComponent implements OnInit {
   theUser: User;
   creationMode: boolean;
   formGroupValidator: FormGroup;
+  passwordField: any = { type: 'password' }; 
 
   constructor(private usersService: UserService,
               private router:Router,
@@ -76,6 +77,14 @@ export class CreateComponent implements OnInit {
         password: this.theUser.password
       });
     });
+  }
+
+  togglePasswordVisibility() {
+    const passwordInput = document.getElementById('password-input') as HTMLInputElement;
+
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
   }
 
   create(){

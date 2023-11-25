@@ -79,14 +79,20 @@
               </div>
             </div>
             <br>
-            <div class="row">
+            <div *ngIf="creationMode" class="row">
               <div class="col-3">
                 <label>Contraseña:</label>
               </div>
               <div class="col-9">
-                <input class="form-control" type="password" formControlName="password">
-                <div
-                  *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
+                <div class="input-group">
+                  <input id="password-input" class="form-control" type="password" formControlName="password">
+                  <div class="input-group-append">
+                    <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
+                      <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                    </span>
+                  </div>
+                </div>
+                <div *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
                   <strong *ngIf="formGroupValidatorData.password.errors.required">Campo requerido</strong>
                 </div>
               </div>

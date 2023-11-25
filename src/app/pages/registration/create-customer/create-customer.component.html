@@ -87,7 +87,6 @@
                   <input id="password-input" class="form-control" type="password" formControlName="password">
                   <div class="input-group-append">
                     <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
-                      <!-- Aquí puedes agregar un ícono de ojo, por ejemplo, Font Awesome -->
                       <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
                     </span>
                   </div>
