@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
   }
   create() {
     console.log('creando');
-    // this.router.navigate(['movies/create'])
+    this.router.navigate(['points/create'])
   }
   update(id: number) {
     console.log('editando' + id);
