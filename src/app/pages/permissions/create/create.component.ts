@@ -45,7 +45,7 @@ export class CreateComponent implements OnInit {
     return this.formGroupValidator.controls;
   }
 
-  roleData() : Permission{
+  permissionData() : Permission{
     let thePermission= new Permission();
     thePermission.description=this.formGroupValidatorData.description.value;
     thePermission.method=this.formGroupValidatorData.method.value;
@@ -76,7 +76,7 @@ export class CreateComponent implements OnInit {
       });
       return false;
     }
-    this.thePermission = this.roleData();
+    this.thePermission = this.permissionData();
     
     console.log("Creando a " + JSON.stringify(this.thePermission))
     this.permissionService.create(this.thePermission).subscribe((jsonResponse: any) => {

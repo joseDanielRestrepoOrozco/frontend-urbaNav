@@ -83,5 +83,12 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/permissions/permissions.module').then(m => m.PermissionsModule)
         }]
+    },
+    {
+        path: 'routes',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/routes/routes.module').then(m => m.RoutesModule)
+        }]
     }
 ];
