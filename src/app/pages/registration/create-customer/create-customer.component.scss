@@ -22,3 +22,10 @@ $background-image-path: "https://www.america-retail.com/static//2021/05/AGENCIA-
     color: rgb(255, 86, 86);
 }
   
+.password-requirements {
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 0.8em;
+  color: #111b70; /* Color verde para los requisitos válidos */
+}

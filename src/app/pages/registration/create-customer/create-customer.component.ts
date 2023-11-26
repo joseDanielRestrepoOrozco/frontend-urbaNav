@@ -62,6 +62,13 @@ export class CreateCustomerComponent implements OnInit {
     return theUser;
   }
 
+  showPasswordRequirements = false;
+
+  togglePasswordRequirementsVisibility() {
+    this.showPasswordRequirements = !this.showPasswordRequirements;
+  }
+
+
   togglePasswordVisibility() {
     const passwordInput = document.getElementById('password-input') as HTMLInputElement;
 
@@ -70,8 +77,51 @@ export class CreateCustomerComponent implements OnInit {
     }
   }
 
+  checkPasswordRequirements() {
+    const password = this.formGroupValidatorData.password.value;
+  
+    this.updatePasswordValidity('length', password.length >= 8);
+    this.updatePasswordValidity('uppercase', /[A-Z]/.test(password));
+    this.updatePasswordValidity('lowercase', /[a-z]/.test(password));
+    this.updatePasswordValidity('number', /\d/.test(password));
+    this.updatePasswordValidity('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
+  
+    // Actualiza el estado de los checkboxes
+    this.updateCheckboxState('length', password.length >= 8);
+    this.updateCheckboxState('uppercase', /[A-Z]/.test(password));
+    this.updateCheckboxState('lowercase', /[a-z]/.test(password));
+    this.updateCheckboxState('number', /\d/.test(password));
+    this.updateCheckboxState('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
+  }
+  
+  updateCheckboxState(requirement: string, isValid: boolean) {
+    const checkbox = document.getElementById(`${requirement}-checkbox`) as HTMLInputElement;
+  
+    if (checkbox) {
+      checkbox.checked = isValid;
+    }
+  }
+  
+  
+  updatePasswordValidity(requirement: string, isValid: boolean) {
+    const requirementsControl = this.formGroupValidator.controls['password'];
+  
+    if (isValid) {
+      const currentErrors = requirementsControl.errors ? { ...requirementsControl.errors } : {};
+      delete currentErrors[requirement];
+  
+      requirementsControl.setErrors(Object.keys(currentErrors).length === 0 ? null : currentErrors);
+    } else {
+      const currentErrors = requirementsControl.errors || {};
+      requirementsControl.setErrors({ ...currentErrors, [requirement]: true });
+    }
+  }
+  
+  isPasswordValid(requirement: string) {
+    return !this.formGroupValidatorData.password.errors || !this.formGroupValidatorData.password.errors[requirement];
+  }
+  
   create(){
-    
     if(this.formGroupValidator.invalid){
       Swal.fire({
         title: 'Formulario Incorrecto',
@@ -92,5 +142,4 @@ export class CreateCustomerComponent implements OnInit {
       this.router.navigate(["users/list"])
     });
   }
-
 }
