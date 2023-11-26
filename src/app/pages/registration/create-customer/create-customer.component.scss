@@ -1,0 +1,24 @@
+$background-image-path: "https://www.america-retail.com/static//2021/05/AGENCIA-ubershopper.jpg";
+
+.create-backround {
+  background: url($background-image-path) no-repeat center center;
+  background-size: cover;
+}
+
+.textR{
+    color: #111b70;  // Color del texto
+    font-size: 1.5em;  // Tamaño de la letra
+    font-weight: bold;  // Grosor de la letra
+    text-align: center;
+}
+
+.error-message {
+    font-size: 0.8em;
+    text-align: left;
+    position: absolute;
+    top: 50%;  /* Posiciona el mensaje de error en el centro vertical */
+    transform: translateY(-50%);  /* Centra verticalmente el mensaje de error */
+    right: 20px;  /* Ajusta el espacio desde el borde derecho del input */
+    color: rgb(255, 86, 86);
+}
+  
