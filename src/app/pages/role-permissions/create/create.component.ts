@@ -1,8 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RolePermission } from "src/app/models/role-permission.model";
 import { RolePermissionService } from "src/app/services/role-permission.service";
+
+import { RoleService } from 'src/app/services/role.service';
+import { PermissionService } from 'src/app/services/permission.service';
+import { Role } from "src/app/models/role.model";
+import { Permission } from "src/app/models/permission.model";
 import Swal from "sweetalert2";
 
 @Component({
@@ -13,34 +18,50 @@ import Swal from "sweetalert2";
 export class CreateComponent implements OnInit {
   theRolepermission: RolePermission;
   creationMode: boolean;
-  formGroupValidator: FormGroup;
+  form: FormGroup = this.fb.group({
+      role: new FormControl('',[Validators.required]),
+      permission: new FormControl('',[Validators.required])
+    });
+
+  roles: Role[] = [];
+  permissions: Permission[] = [];
 
   constructor(private rolepermissionsService: RolePermissionService,
               private router:Router,
               private rutaActiva:ActivatedRoute,
-              private formBuilder: FormBuilder) {
-    this.theRolepermission = {_id:""}
+              private fb: FormBuilder,
+              private roleService: RoleService,
+              private permissionService: PermissionService,) {
+   
     this.creationMode = true;
 }
 
   ngOnInit(): void {
-    this.formBuilding();
+    // this.form.reset({ role: '', permission: ''})
+    this.loadRoles();
+    this.loadPermissions();
     if (this.rutaActiva.snapshot.params.id){
       this.creationMode=false;
       this.show(this.rutaActiva.snapshot.params.id)
     }
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      _id : [''],
-      // role: ['',[Validators.required]]
-      // permission: ['',[Validators.required]]
+  
+
+  loadRoles() {
+    this.roleService.list().subscribe(data => {
+      this.roles = data;
+    });
+  }
+  
+  loadPermissions() {
+    this.permissionService.list().subscribe(data => {
+      this.permissions = data;
     });
   }
 
   get formGroupValidatorData(){
-    return this.formGroupValidator.controls;
+    return this.form.controls;
   }
 
   rolepermissionData() : RolePermission{
@@ -50,30 +71,29 @@ export class CreateComponent implements OnInit {
     return theRolepermission;
   }
 
-  show(id:number){
+  show(id:string){
+    console.log(id)
     this.rolepermissionsService.show(id).subscribe((jsonResponse: any) => {
-      this.theRolepermission=jsonResponse
+      console.log(jsonResponse)
 
-      this.formGroupValidator.patchValue({
+      this.form.patchValue({
         _id: this.theRolepermission._id,
       });
     });
   }
 
-  create(){
+  create(): void{
     
-    if(this.formGroupValidator.invalid){
+    if(this.form.invalid){
       Swal.fire({
         title: 'Formulario Incorrecto',
         icon: 'error',
         timer:3000
       });
-      return false;
+      return;
     }
-    this.theRolepermission = this.rolepermissionData();
-    
-    console.log("Creando a " + JSON.stringify(this.theRolepermission))
-    this.rolepermissionsService.create(this.theRolepermission).subscribe((jsonResponse: any) => {
+ 
+    this.rolepermissionsService.create(this.form.controls['role'].value,this.form.controls['permission'].value).subscribe((jsonResponse: any) => {
       Swal.fire({
         title: 'Creado', 
         icon: 'success',
@@ -83,13 +103,26 @@ export class CreateComponent implements OnInit {
   }
 
   update(){
-    this.rolepermissionsService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
+    if(this.form.invalid){
+      Swal.fire({
+        title: 'Formulario Incorrecto',
+        icon: 'error',
+        timer:3000
+      });
+      return;
+    }
+
+    this.rolepermissionsService.create(this.form.controls['role'].value,this.form.controls['permission'].value).subscribe((jsonResponse: any) => {
       Swal.fire({
         title: 'Actualizando',
         icon: 'success',
       })
       this.router.navigate(["role-permissions/list"])
     });
+  }
+
+  onSubmit(){
+    console.log(this.form.value)
   }
 
 }

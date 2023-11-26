@@ -22,18 +22,16 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Id</th>
                   <th scope="col">Rol</th>
                   <th scope="col">Permiso</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let actualRolepermission of rolepermissions">
-                    <td>{{actualRolepermission._id}}</td>
                     <td>{{actualRolepermission.role?.name}}</td>
                     <td>{{actualRolepermission.permission?.url}}</td>
                   <th>
-                    <button type="button" class="btn btn-primary" (click)="edit(actualRolepermission._id)">Editar</button>
+                    <!-- <button type="button" class="btn btn-primary" (click)="edit(actualRolepermission._id)">Editar</button> -->
                     <button type="button" class="btn btn-danger" (click)="delete(actualRolepermission._id)">Eliminar</button>
                   </th>
                 </tr>

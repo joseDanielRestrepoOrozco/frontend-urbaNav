@@ -12,6 +12,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/users/list', title: 'Usuarios', icon: 'ni-single-02 text-white', class: '' },
   { path: '/vehicles/list', title: 'Vehículos', icon: 'ni-single-02 text-white', class: '' },
   { path: '/roles/list', title: 'Roles', icon: 'ni-single-02 text-white', class: '' },
+  { path: '/role-permissions/list', title: 'Roles-Permisos', icon: 'ni-single-02 text-white', class: '' },
   { path: '/points/list', title: 'Puntos', icon: 'ni-sound-wave text-white', class: '' },
   { path: '/routes', title: 'Rutas', icon: 'ni-sound-wave text-white', class: '' },
   { path: '/points-route', title: 'Puntos Ruta', icon: 'ni-sound-wave text-white', class: '' },
