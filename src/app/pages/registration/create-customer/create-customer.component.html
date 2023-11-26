@@ -8,8 +8,7 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 *ngIf="creationMode" class="mb-0">Crear Usuario</h3>
-          <h3 *ngIf="!creationMode" class="mb-0">Actualizar Usuario</h3>
+          <h3 class="mb-0">Registrarse</h3>
         </div>
         <div class="card-body">
           <form [formGroup]="formGroupValidator">
@@ -79,7 +78,7 @@
               </div>
             </div>
             <br>
-            <div *ngIf="creationMode" class="row">
+            <div class="row">
               <div class="col-3">
                 <label>Contraseña:</label>
               </div>
@@ -103,10 +102,8 @@
 
               </div>
               <div class="col-9">
-                <button *ngIf="creationMode" type="button" class="btn btn-primary btn-block"
+                <button type="button" class="btn btn-primary btn-block"
                   (click)="create()">Crear</button>
-                <button *ngIf="!creationMode" type="button" class="btn btn-primary btn-block"
-                  (click)="update()">Actualizar</button>
               </div>
             </div>
           </form>
@@ -116,3 +113,4 @@
     </div>
   </div>
 </div>
+
