@@ -16,6 +16,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/routes', title: 'Rutas', icon: 'ni-sound-wave text-white', class: '' },
   { path: '/points-route', title: 'Puntos Ruta', icon: 'ni-sound-wave text-white', class: '' },
   { path: '/login', title: 'Login', icon: 'ni-key-25 text-white', class: '' },
+  { path: '/pqrs-cliente/create', title: 'PQRS', icon: 'ni-key-25 text-white', class: '' },
   { path: '/registration/inicial', title: 'Register', icon: 'ni-circle-08 text-white', class: '' },
   { path: '/mision', title: 'Misión', icon: 'ni-compass-04 text-white', class: '' },
   { path: '/vision', title: 'Visión', icon: 'ni-send text-white', class: '' },

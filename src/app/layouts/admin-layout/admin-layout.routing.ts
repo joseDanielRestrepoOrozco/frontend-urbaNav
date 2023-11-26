@@ -64,5 +64,12 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/points/points.module').then(point => point.PointsModule)
           }]
-        }
+        },
+        {
+            path: 'pqrs-cliente',
+            children: [{
+              path: '',
+              loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
+            }]
+          }
 ];
