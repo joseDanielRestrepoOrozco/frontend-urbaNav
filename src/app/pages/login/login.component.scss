@@ -1,0 +1,15 @@
+$background-image-path: "https://s1.1zoom.me/big0/970/Motion_Night_493472.jpg";
+
+.login-backround {
+  background: url($background-image-path) no-repeat center center;
+  background-size: cover;
+}
+
+.error-message {
+  font-size: 0.8em;
+  text-align: center;
+  width: 100%;
+  display: block;
+  color: rgb(255, 86, 86);
+  padding: 12px 10px 0 10px;
+}
