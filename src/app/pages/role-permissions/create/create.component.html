@@ -1,1 +1,57 @@
-<p>create works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 *ngIf="creationMode" class="mb-0">Asignar permisos a un rol</h3>
+          <h3 *ngIf="!creationMode" class="mb-0">Actualizar permisos a un rol</h3>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <!-- Sección de Rol -->
+            <div class="row">
+              <div class="col-3">
+                <label>Rol:</label>
+              </div>
+              <div class="col-9">
+                <select class="form-control" formControlName="role">
+                  <option *ngFor="let role of roles" [value]="role._id">{{ role.name }}</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <!-- Sección de Permiso -->
+            <div class="row">
+              <div class="col-3">
+                <label>Permiso:</label>
+              </div>
+              <div class="col-9">
+                <select class="form-control" formControlName="permission">
+                  <option *ngFor="let permission of permissions" [value]="permission._id">{{ permission.url }}</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+
+              </div>
+              <div class="col-9">
+                <button *ngIf="creationMode" type="submit" class="btn btn-primary btn-block"
+                  (click)="create()">Crear</button>
+                <button *ngIf="!creationMode" type="submit" class="btn btn-primary btn-block"
+                  (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
