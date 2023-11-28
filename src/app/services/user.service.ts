@@ -17,6 +17,7 @@ export class UserService {
     return this.http.get<User[]>(`${environment.url_ms_security}/private/users`);
   }
 
+
   show(_id:number): Observable<User> {
     return this.http.get<User>(`${environment.url_ms_security}/private/users/`+_id);
   }
@@ -30,7 +31,26 @@ export class UserService {
     return this.http.put(`${environment.url_ms_security}/private/users/${newUser._id}`, newUser);
   }
 
-  delete(_id: number){
-    return this.http.delete(`${environment.url_ms_security}/private/users/${_id}`);
+  delete(_id: number,role:string){
+    if(role ==="CONDUCTOR"){
+      this.http.get<any[]>(`${environment.url_ms_urbannav}/drivers`).subscribe((json:any)=>{
+        json.drivers.forEach(driver => {
+          if(driver.user_id === _id){
+            this.http.delete<any[]>(`${environment.url_ms_urbannav}/drivers/`+_id)
+          }
+        });
+      })
+    }
+    if(role==="CLIENTE"){
+      this.http.get<any[]>(`${environment.url_ms_urbannav}/customers`).subscribe((json:any)=>{
+        console.log(json.customers)
+        json.customers.forEach(customer => {
+          if(customer.user_id === _id){
+            this.http.delete<any[]>(`${environment.url_ms_urbannav}/customers/`+_id)
+          }
+        });
+      })
+    }
+    //return this.http.delete(`${environment.url_ms_security}/private/users/${_id}`);
   }
 }

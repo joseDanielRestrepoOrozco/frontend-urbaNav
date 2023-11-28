@@ -11,8 +11,8 @@ import { LoginComponent } from '../../pages/login/login.component';
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
-    ReactiveFormsModule
-    // NgbModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   declarations: [
     LoginComponent,

@@ -8,6 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { VisionComponent } from 'src/app/pages/vision/vision.component';
 import { MisionComponent } from 'src/app/pages/mision/mision.component';
 
+
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user-profile', component: UserProfileComponent },
@@ -26,41 +27,27 @@ export const AdminLayoutRoutes: Routes = [
             }]
     },
 
-    {
-        path: 'users',
+        {path: 'bill',
         children: [
-            {
-                path: '',
-                loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
-            }]
-    },
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/bill/bill.module').then(m => m.BillModule )
+        }]},
 
-    {
-        path: 'roles',
+        {path: 'customer',
         children: [
-            {
-                path: '',
-                loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule)
-            }]
-    },
-
-    {
-        path: 'pqrs',
-        children: [
-            {
-                path: '',
-                loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule)
-            }]
-    },
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule )
+        }]},
 
     {
         path: 'payment-methods',
         children: [
-            {
-                path: '',
-                loadChildren: () => import('src/app/pages/payment-methods/payment-methods.module').then(m => m.PaymentMethodsModule)
-            }]
-    },
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule )
+        }]},
 
     {
         path: 'role-permissions',
@@ -82,6 +69,14 @@ export const AdminLayoutRoutes: Routes = [
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/permissions/permissions.module').then(m => m.PermissionsModule)
+        }]
+    },
+
+    {
+        path: 'users',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
         }]
     },
     {
