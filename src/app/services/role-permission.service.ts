@@ -17,13 +17,12 @@ export class RolePermissionService {
     return this.http.get<RolePermission[]>(`${environment.url_ms_security}/private/role-permission`);
   }
 
-  show(_id:number): Observable<RolePermission> {
-    return this.http.get<RolePermission>(`${environment.url_ms_security}/private/role-permission/`+_id);
+  show(_id:string): Observable<RolePermission> {
+    return this.http.get<RolePermission>(`${environment.url_ms_security}/private/role-permission/${_id}`);
   }
 
-  create(newRolepermission: RolePermission){
-    delete newRolepermission._id;
-    return this.http.post(`${environment.url_ms_security}/private/role-permission`, newRolepermission);
+  create(role_id: string, permission_id: string ){
+    return this.http.post(`${environment.url_ms_security}/private/role-permission/role/${role_id}/permission/${permission_id}`, null);
   }
 
   update(newRolepermission: RolePermission){

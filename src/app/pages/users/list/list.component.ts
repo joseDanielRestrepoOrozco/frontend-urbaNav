@@ -34,7 +34,9 @@ export class ListComponent implements OnInit {
     this.router.navigate(["users/update/" + _id])
   }
 
-  delete(_id:number){
+
+
+  delete(_id:number, role:string){
     console.log("Eliminando a " + _id)
     Swal.fire({
       title: 'Eliminar',
@@ -47,14 +49,15 @@ export class ListComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usersService.delete(_id).subscribe(data => {
+        this.usersService.delete(_id,role)
+        /*.subscribe(data => {
             Swal.fire(
               'Eliminado!',
               'Eliminación culminada exitosamente',
               'success'
             )
             this.ngOnInit();
-          });
+          });*/
       }
     })
   

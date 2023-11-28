@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { RolePermissionsRoutingModule } from './role-permissions-routing.module';
+import { BillRoutingModule } from './bill-routing.module';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,9 +14,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RolePermissionsRoutingModule,
+    BillRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ]
 })
-export class RolePermissionsModule { }
+export class BillModule { }
