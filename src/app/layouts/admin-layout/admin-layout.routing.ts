@@ -8,6 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { VisionComponent } from 'src/app/pages/vision/vision.component';
 import { MisionComponent } from 'src/app/pages/mision/mision.component';
 
+
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
@@ -22,6 +23,20 @@ export const AdminLayoutRoutes: Routes = [
         {
             path: '',
             loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule )
+        }]},
+
+        {path: 'bill',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/bill/bill.module').then(m => m.BillModule )
+        }]},
+
+        {path: 'customer',
+        children: [
+        {
+            path: '',
+            loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule )
         }]},
 
         {path: 'users',

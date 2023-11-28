@@ -18,3 +18,6 @@ Correr el servidor
 ```
 ng serve
 ```
+
+
+Librerias: 
