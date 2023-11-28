@@ -29,6 +29,7 @@
                 <th scope="col">Fecha nacimiento</th>
                 <th scope="col">e-mail</th>
                 <th scope="col">rol</th>
+                <th scope="col">info</th>
                 <th scope="col">Opciones</th>
               </tr>
             </thead>
@@ -43,7 +44,7 @@
                   <td>{{actualUser.role?.name}}</td>
                 <th>
                   <button type="button" class="btn btn-primary" (click)="edit(actualUser._id)">Editar</button>
-                  <button type="button" class="btn btn-danger" (click)="delete(actualUser._id)">Eliminar</button>
+                  <button type="button" class="btn btn-danger" (click)="delete(actualUser._id,actualUser.role?.name)">Eliminar</button>
                 </th>
               </tr>
             </tbody>
