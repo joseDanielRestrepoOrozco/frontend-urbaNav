@@ -19,13 +19,13 @@ export class BillService {
   }
 
   create(newBill: Bill){
-    delete newBill._id;
+    delete newBill.id;
     return this.http.post(`${environment.url_ms_urbannav}/bills`, newBill);
   }
 
   update(newBill: Bill){
     console.log(newBill);
-    return this.http.put(`${environment.url_ms_urbannav}/bills/${newBill._id}`, newBill);
+    return this.http.put(`${environment.url_ms_urbannav}/bills/${newBill.id}`, newBill);
   }
 
   delete(id: number){

@@ -35,34 +35,9 @@ export class ListComponent implements OnInit {
 
   edit(id:number){
     console.log("Editando a " + id)
-    this.router.navigate(["vehicles/update/" + id])
+    this.router.navigate(["bill/update/" + id])
   }
 
-  delete(id:number){
-    console.log("Eliminando a " + id)
-    Swal.fire({
-      title: 'Eliminar',
-      text: "Está seguro que quiere eliminar el vehiculo?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar',
-      cancelButtonText: 'No, cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.billService.delete(id).subscribe(data => {
-            Swal.fire(
-              'Eliminado!',
-              'Eliminación culminada exitosamente',
-              'success'
-            )
-            this.ngOnInit();
-          });
-      }
-    })
-  
-  }
 
   formatearFecha(fechaString: string): string {
     let fecha:string = fechaString.replace('T', ' ').replace('Z', '');

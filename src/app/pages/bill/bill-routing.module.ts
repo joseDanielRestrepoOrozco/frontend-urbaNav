@@ -5,7 +5,8 @@ import { CreateComponent } from '../bill/create/create.component';
 
 const routes: Routes = [
   {path:"list", component:ListComponent},
-  {path:"create", component:CreateComponent}
+  {path:"create", component:CreateComponent},
+  {path:"update/:id",component:CreateComponent}
 ];
 
 @NgModule({
