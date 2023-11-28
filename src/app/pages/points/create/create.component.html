@@ -1,0 +1,44 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <!-- <h3 *ngIf="creationMode" class="mb-0">Crear Película</h3>
+          <h3 *ngIf="!creationMode" class="mb-0">Editar Película</h3> -->
+          <h3 class="mb-0">Crear Punto</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-date-release">Nombre</label>
+                    <input type="text" class="form-control form-control-alternative" placeholder="Nombre">
+                  </div>
+                </div>
+                <!-- <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-date-release">Coordenadas</label>
+                    <input type="number" class="form-control form-control-alternative" placeholder="Latitud, Longitud">
+                  </div>
+                </div> -->
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="button" class="btn btn-info btn-block">Crear</button>
+                <!-- <button *ngIf="creationMode" type="button" class="btn btn-info btn-block"
+                  (click)="create()">Crear</button>
+                <button *ngIf="!creationMode" type="button" class="btn btn-info btn-block"
+                  (click)="update()">Actualizar</button> -->
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

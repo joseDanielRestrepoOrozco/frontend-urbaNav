@@ -1,0 +1,50 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body"></div>
+    </div>
+  </div>
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">Permisos de los roles</h3>
+              </div>
+              <div class="col text-right">
+                <button class="btn btn-success" (click)="create()">Crear</button>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Permiso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let actualRolepermission of rolepermissions">
+                    <td>{{actualRolepermission._id}}</td>
+                    <td>{{actualRolepermission.role?.name}}</td>
+                    <td>{{actualRolepermission.permission?.url}}</td>
+                  <th>
+                    <!-- <button type="button" class="btn btn-primary" (click)="edit(actualRolepermission._id)">Editar</button> -->
+                    <button type="button" class="btn btn-danger" (click)="delete(actualRolepermission._id)">Eliminar</button>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  

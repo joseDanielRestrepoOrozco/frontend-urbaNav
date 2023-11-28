@@ -27,20 +27,20 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Fecha nacimiento</th>
-                <th scope="col">email</th>
-                <th scope="col">role</th>
+                <th scope="col">e-mail</th>
+                <th scope="col">rol</th>
                 <th scope="col">Opciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let actualUser of users">
-                  <th>{{actualUser._id}}</th>
-                  <th>{{actualUser.name}}</th>
-                  <th>{{actualUser.surname}}</th>
-                  <th>{{actualUser.phone}}</th>
-                  <th>{{actualUser.birthdate}}</th>
-                  <th>{{actualUser.email}}</th>
-                  <th>{{actualUser.role?.name}}</th>
+                  <td>{{actualUser._id}}</td>
+                  <td>{{actualUser.name}}</td>
+                  <td>{{actualUser.surname}}</td>
+                  <td>{{actualUser.phone}}</td>
+                  <td>{{actualUser.birthdate}}</td>
+                  <td>{{actualUser.email}}</td>
+                  <td>{{actualUser.role?.name}}</td>
                 <th>
                   <button type="button" class="btn btn-primary" (click)="edit(actualUser._id)">Editar</button>
                   <button type="button" class="btn btn-danger" (click)="delete(actualUser._id)">Eliminar</button>

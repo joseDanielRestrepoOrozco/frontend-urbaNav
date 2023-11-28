@@ -1,0 +1,125 @@
+<div class="create-backround">
+  <div class="header pb-8 pt-5 pt-md-8">
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow mb-6">
+          <div class="card-header border-0">
+            <h3 class="mb--3 textR">Registrarse</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formGroupValidator">
+              <div class="row">
+                <div class="col-3">
+                  <label>Nombre:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="text" formControlName="name">
+                  <div *ngIf="formGroupValidatorData.name.errors && (formGroupValidatorData.name.dirty || formGroupValidatorData.name.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.name.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Apellido:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="text" formControlName="surname">
+                  <div
+                    *ngIf="formGroupValidatorData.surname.errors && (formGroupValidatorData.surname.dirty || formGroupValidatorData.surname.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.surname.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Telefono:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="number" formControlName="phone">
+                  <div
+                    *ngIf="formGroupValidatorData.phone.errors && (formGroupValidatorData.phone.dirty || formGroupValidatorData.phone.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.phone.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Fecha de Nacimiento:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="date" formControlName="birthdate">
+                  <div
+                    *ngIf="formGroupValidatorData.birthdate.errors && (formGroupValidatorData.birthdate.dirty || formGroupValidatorData.birthdate.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.birthdate.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Correo:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="email" formControlName="email">
+                  <div
+                    *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.email.errors.required">Campo requerido</strong>
+                    <strong *ngIf="formGroupValidatorData.email.errors.email">Este campo debe ser un email</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Contraseña:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <div class="input-group">
+                    <input id="password-input" class="form-control" type="password" formControlName="password" (focus)="togglePasswordRequirementsVisibility()" (blur)="togglePasswordRequirementsVisibility()" (input)="checkPasswordRequirements()">
+                    <div class="input-group-append">
+                      <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
+                        <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                      </span>
+                    </div>
+                  </div>
+                    <div *ngIf="showPasswordRequirements">
+                      <ul class="password-requirements">
+                        <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8 caracteres</li>
+                        <li><input type="checkbox" [disabled]="true" id="uppercase-checkbox"> Al menos una mayúscula</li>
+                        <li><input type="checkbox" [disabled]="true" id="lowercase-checkbox"> Al menos una minúscula</li>
+                        <li><input type="checkbox" [disabled]="true" id="number-checkbox"> Al menos un número</li>
+                        <li><input type="checkbox" [disabled]="true" id="special-checkbox"> Al menos un carácter especial</li>
+                      </ul>
+                  </div>
+                  <div *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.password.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+  
+                </div>
+                <div class="col-9">
+                  <button type="button" class="btn btn-primary btn-block"
+                    (click)="create()">Crear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

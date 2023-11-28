@@ -10,20 +10,22 @@ import { MisionComponent } from 'src/app/pages/mision/mision.component';
 
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'tables',         component: TablesComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'mision',         component: MisionComponent},
-    { path: 'vision',         component: VisionComponent},
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'user-profile', component: UserProfileComponent },
+    { path: 'tables', component: TablesComponent },
+    { path: 'icons', component: IconsComponent },
+    { path: 'maps', component: MapsComponent },
+    { path: 'mision', component: MisionComponent },
+    { path: 'vision', component: VisionComponent },
 
-    {path: 'vehicles',
+    {
+        path: 'vehicles',
         children: [
-        {
-            path: '',
-            loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule )
-        }]},
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule)
+            }]
+    },
 
         {path: 'bill',
         children: [
@@ -39,17 +41,48 @@ export const AdminLayoutRoutes: Routes = [
             loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule )
         }]},
 
-        {path: 'users',
+    {
+        path: 'payment-methods',
         children: [
         {
             path: '',
             loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule )
         }]},
 
-        {path: 'roles',
+    {
+        path: 'role-permissions',
         children: [
-        {
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/role-permissions/role-permissions.module').then(m => m.RolePermissionsModule)
+            }]
+    },
+    {
+        path: 'points',
+        children: [{
             path: '',
-            loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule )
-        }]}
+            loadChildren: () => import('src/app/pages/points/points.module').then(point => point.PointsModule)
+        }]
+    },
+    {
+        path: 'permissions',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/permissions/permissions.module').then(m => m.PermissionsModule)
+        }]
+    },
+    {
+        path: 'routes',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/routes/routes.module').then(m => m.RoutesModule)
+        }]
+        },
+        {
+            path: 'pqrs-cliente',
+            children: [{
+              path: '',
+              loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
+            }]
+      }
 ];
