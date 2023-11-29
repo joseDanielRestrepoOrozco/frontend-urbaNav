@@ -1,0 +1,102 @@
+<div class="header fondo-tabla pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <h3 *ngIf="creationMode" class="mb-0">Crear ruta</h3>
+                    <h3 *ngIf="!creationMode" class="mb-0">Actualizar ruta</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formGroupValidator">
+                        <div class="row">
+                            <div class="col-3">
+                                <label>Fecha:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="date" formControlName="date_Time">
+                                <div *ngIf="formGroupValidatorData.date_Time.errors && (formGroupValidatorData.date_Time.dirty || formGroupValidatorData.date_Time.touched)">
+                                    <strong *ngIf="formGroupValidatorData.date_Time.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>precio:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="number" formControlName="price">
+                                <div *ngIf="formGroupValidatorData.price.errors && (formGroupValidatorData.price.dirty || formGroupValidatorData.price.touched)">
+                                    <strong *ngIf="formGroupValidatorData.price.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" *ngIf="!creationMode">
+                            <div class="col-3">
+                                <label>Estado:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="radio" formControlName="state">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>id de ruta:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="number" formControlName="route_id">
+                                <div *ngIf="formGroupValidatorData.route_id.errors && (formGroupValidatorData.route_id.dirty || formGroupValidatorData.route_id.touched)">
+                                    <strong *ngIf="formGroupValidatorData.route_id.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>id de cliente:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="number" formControlName="customer_id">
+                                <div *ngIf="formGroupValidatorData.customer_id.errors && (formGroupValidatorData.customer_id.dirty || formGroupValidatorData.customer_id.touched)">
+                                    <strong *ngIf="formGroupValidatorData.customer_id.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <label>id de conductor:</label>
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control" type="number" formControlName="driver_id">
+                                <div *ngIf="formGroupValidatorData.driver_id.errors && (formGroupValidatorData.driver_id.dirty || formGroupValidatorData.driver_id.touched)">
+                                    <strong *ngIf="formGroupValidatorData.driver_id.errors.required">Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+
+                            </div>
+                            <div class="col-9">
+                                <button *ngIf="creationMode" type="button" class="btn btn-primary btn-block"
+                                    (click)="create()">Crear</button>
+                                <button *ngIf="!creationMode" type="button" class="btn btn-primary btn-block"
+                                    (click)="update()">Actualizar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

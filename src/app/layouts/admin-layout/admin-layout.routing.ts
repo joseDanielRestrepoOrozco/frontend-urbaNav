@@ -27,27 +27,32 @@ export const AdminLayoutRoutes: Routes = [
             }]
     },
 
-        {path: 'bill',
+    {
+        path: 'bill',
         children: [
-        {
-            path: '',
-            loadChildren: () => import('src/app/pages/bill/bill.module').then(m => m.BillModule )
-        }]},
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/bill/bill.module').then(m => m.BillModule)
+            }]
+    },
 
-        {path: 'customer',
+    {
+        path: 'customer',
         children: [
-        {
-            path: '',
-            loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule )
-        }]},
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule)
+            }]
+    },
 
     {
         path: 'payment-methods',
         children: [
-        {
-            path: '',
-            loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule )
-        }]},
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
+            }]
+    },
 
     {
         path: 'role-permissions',
@@ -92,5 +97,29 @@ export const AdminLayoutRoutes: Routes = [
               path: '',
               loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
             }]
-      }
+      },
+
+      {
+        path: 'pqrs',
+        children: [{
+        path: '',
+        loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule)
+        }]
+    },
+
+    {
+        path: 'roles',
+        children: [{
+        path: '',
+        loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule)
+        }]
+    },
+
+    {
+        path: 'trips',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/trips/trips.module').then(m => m.TripsModule)
+        }]
+    }
 ];

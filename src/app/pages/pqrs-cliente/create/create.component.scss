@@ -1,0 +1,24 @@
+
+.textR{
+    color: #1d267d;  // Color del texto
+    font-size: 1.5em;  // Tamaño de la letra
+    font-weight: 600; // Grosor de la letra
+    text-align: center;
+}
+
+.textH2{
+    color: #0e197c;  // Color del texto
+    font-size: 3.5em;  // Tamaño de la letra
+    font-weight: bolder; // Grosor de la letra
+    text-align: center;
+}
+
+.bt{
+    background-color: #5c469c;
+}
+
+@media (max-width: 380px){
+    .textH2{
+        font-size: 2.5em;  // Tamaño de la letra
+    }
+}

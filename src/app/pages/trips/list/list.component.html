@@ -11,7 +11,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
-                <h3 class="mb-0">Métodos de pago</h3>
+                <h3 class="mb-0">Usuarios</h3>
               </div>
               <div class="col text-right">
                 <button class="btn btn-success" (click)="create()">Crear</button>
@@ -23,24 +23,27 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Número de tarjeta</th>
-                  <th scope="col">CVV</th>
-                  <th scope="col">Fecha expiración</th>
-                  <th scope="col">Usuario</th>
+                  <th scope="col">fecha</th>
+                  <th scope="col">precio</th>
+                  <th scope="col">status</th>
+                  <th scope="col">id de ruta</th>
+                  <th scope="col">id de cliente</th>
+                  <th scope="col">id de conductor</th>
+                  <th scope="col">Opciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let actualPaymentmethod of paymentmethods">
-                    <th>{{actualPaymentmethod._id}}</th>
-                    <th>{{actualPaymentmethod.type}}</th>
-                    <th>{{actualPaymentmethod.cardNumber}}</th>
-                    <th>{{actualPaymentmethod.cardCVV}}</th>
-                    <th>{{actualPaymentmethod.expiryDate}}</th>
-                    <th>{{actualPaymentmethod.user?.name}}</th>
+                <tr *ngFor="let actualTrip of trips">
+                    <td>{{actualTrip.id}}</td>
+                    <td>{{actualTrip.date}}</td>
+                    <td>{{actualTrip.price}}</td>
+                    <td>{{actualTrip.status}}</td>
+                    <td>{{actualTrip.route_id}}</td>
+                    <td>{{actualTrip.customer_id}}</td>
+                    <td>{{actualTrip.driver_id}}</td>
                   <th>
-                    <button type="button" class="btn btn-primary" (click)="edit(actualPaymentmethod._id)">Editar</button>
-                    <button type="button" class="btn btn-danger" (click)="delete(actualPaymentmethod._id)">Eliminar</button>
+                    <button type="button" class="btn btn-primary" (click)="edit(actualTrip.id)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actualTrip.id)">Eliminar</button>
                   </th>
                 </tr>
               </tbody>
