@@ -50,14 +50,14 @@ export class ListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.usersService.delete(_id,role)
-        /*.subscribe(data => {
+        .subscribe(data => {
             Swal.fire(
               'Eliminado!',
               'Eliminación culminada exitosamente',
               'success'
             )
             this.ngOnInit();
-          });*/
+          });
       }
     })
   
