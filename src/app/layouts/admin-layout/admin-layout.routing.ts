@@ -7,11 +7,15 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { VisionComponent } from 'src/app/pages/vision/vision.component';
 import { MisionComponent } from 'src/app/pages/mision/mision.component';
+import { AuthenticatedGuard } from 'src/app/guards/authenticated.guard';
+import { DriverGuard } from 'src/app/guards/driver.guard';
+import { AdministratorGuard } from 'src/app/guards/administrator.guard';
+import { CustomerGuard } from 'src/app/guards/customer.guard';
 
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'user-profile', component: UserProfileComponent },
+    { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthenticatedGuard] },
     { path: 'tables', component: TablesComponent },
     { path: 'icons', component: IconsComponent },
     { path: 'maps', component: MapsComponent },
@@ -24,7 +28,8 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule)
-            }]
+            }],
+        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
 
     {
@@ -33,7 +38,8 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('src/app/pages/bill/bill.module').then(m => m.BillModule)
-            }]
+            }],
+        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
 
     {
@@ -42,7 +48,8 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule)
-            }]
+            }],
+        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
 
     {
@@ -60,21 +67,24 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('src/app/pages/role-permissions/role-permissions.module').then(m => m.RolePermissionsModule)
-            }]
+            }],
+        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
     {
         path: 'points',
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/points/points.module').then(point => point.PointsModule)
-        }]
+        }],
+        //canActivate: [AdministratorGuard]
     },
     {
         path: 'permissions',
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/permissions/permissions.module').then(m => m.PermissionsModule)
-        }]
+        }],
+        //canActivate: [AdministratorGuard]
     },
 
     {
@@ -82,7 +92,8 @@ export const AdminLayoutRoutes: Routes = [
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
-        }]
+        }],
+        //canActivate: [AdministratorGuard]
     },
     {
         path: 'routes',
@@ -90,29 +101,32 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/routes/routes.module').then(m => m.RoutesModule)
         }]
-        },
-        {
-            path: 'pqrs-cliente',
-            children: [{
-              path: '',
-              loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
-            }]
-      },
+    },
+    {
+        path: 'pqrs-cliente',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
+        }],
+        //canActivate: [AuthenticatedGuard] && [CustomerGuard]
+    },
 
-      {
+    {
         path: 'pqrs',
         children: [{
-        path: '',
-        loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule)
-        }]
+            path: '',
+            loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule)
+        }],
+        //canActivate: [AuthenticatedGuard]
     },
 
     {
         path: 'roles',
         children: [{
-        path: '',
-        loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule)
-        }]
+            path: '',
+            loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule)
+        }],
+        //canActivate: [AdministratorGuard]
     },
 
     {
@@ -120,13 +134,15 @@ export const AdminLayoutRoutes: Routes = [
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/trips/trips.module').then(m => m.TripsModule)
-        }]
+        }],
+        //canActivate: [AdministratorGuard]
     },
     {
         path: 'ratings',
         children: [{
             path: '',
             loadChildren: () => import('src/app/pages/ratings/ratings.module').then(m => m.RatingsModule)
-        }]
+        }],
+        //canActivate: [AdministratorGuard]
     }
 ];
