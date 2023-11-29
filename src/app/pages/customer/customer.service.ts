@@ -97,7 +97,7 @@ export class CustomerService {
         },
         paint:{
           'line-color': 'blue',
-          'line-width': 10
+          'line-width': 5
         }
       })
 
