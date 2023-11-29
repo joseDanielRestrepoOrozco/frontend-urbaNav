@@ -1,11 +1,12 @@
+import { Bill } from "./bill.model";
+
 export class Trip {
-    _id?:string;
-    date_Time?:string;
+    id?:number;
+    date?:string;
     price?:number;
     status?:boolean;
-    birthdate?:string;
-    email?:string;
-    password?:string;
-    //role?:Role;
-    token?:string;
+    route_id?:number;
+    customer_id?:number;
+    driver_id?:number;
+    bill?:Bill;
 }
