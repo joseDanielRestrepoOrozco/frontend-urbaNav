@@ -11,7 +11,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
-                <h3 class="mb-0">Viajes</h3>
+                <h3 class="mb-0">Reseñas</h3>
               </div>
               <div class="col text-right">
                 <button class="btn btn-success" (click)="create()">Crear</button>
@@ -23,27 +23,21 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col">fecha</th>
-                  <th scope="col">precio</th>
-                  <th scope="col">status</th>
-                  <th scope="col">id de ruta</th>
-                  <th scope="col">id de cliente</th>
-                  <th scope="col">id de conductor</th>
+                  <th scope="col">Estrellas</th>
+                  <th scope="col">comentario</th>
+                  <th scope="col">id del viaje</th>
                   <th scope="col">Opciones</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let actualTrip of trips">
-                    <td>{{actualTrip.id}}</td>
-                    <td>{{actualTrip.date}}</td>
-                    <td>{{actualTrip.price}}</td>
-                    <td>{{actualTrip.status}}</td>
-                    <td>{{actualTrip.route_id}}</td>
-                    <td>{{actualTrip.customer_id}}</td>
-                    <td>{{actualTrip.driver_id}}</td>
+                <tr *ngFor="let actualRating of ratings">
+                  <th>{{actualRating.id}}</th>
+                  <th>{{actualRating.stars}}</th>
+                  <th>{{actualRating.comment}}</th>
+                  <th>{{actualRating.trip_id}}</th>
                   <th>
-                    <button type="button" class="btn btn-primary" (click)="edit(actualTrip.id)">Editar</button>
-                    <button type="button" class="btn btn-danger" (click)="delete(actualTrip.id)">Eliminar</button>
+                    <button type="button" class="btn btn-primary" (click)="edit(actualRating.id)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(actualRating.id)">Eliminar</button>
                   </th>
                 </tr>
               </tbody>
@@ -53,7 +47,3 @@
       </div>
     </div>
   </div>
-  
-  
-  
-  

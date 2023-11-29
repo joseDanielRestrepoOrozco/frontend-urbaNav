@@ -104,5 +104,12 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/trips/trips.module').then(m => m.TripsModule)
         }]
+    },
+    {
+        path: 'ratings',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/ratings/ratings.module').then(m => m.RatingsModule)
+        }]
     }
 ];
