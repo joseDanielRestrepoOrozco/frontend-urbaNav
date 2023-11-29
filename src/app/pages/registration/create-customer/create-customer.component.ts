@@ -139,7 +139,7 @@ export class CreateCustomerComponent implements OnInit {
         title: 'Registrado exitosamente', 
         icon: 'success',
       })
-      this.router.navigate(["users/list"])
+      this.router.navigate(['login'])
     });
   }
 }

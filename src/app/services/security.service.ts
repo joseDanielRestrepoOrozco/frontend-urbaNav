@@ -63,6 +63,7 @@ export class SecurityService {
       return false;
     } else {
       localStorage.setItem('session', JSON.stringify(userData));
+      localStorage.setItem('userId', userData._id);
       this.setUser(userData)
       return true;
     }

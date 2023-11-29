@@ -57,14 +57,19 @@ export class CreateComponent implements OnInit {
       return false;
     }
     this.thePqrs = this.pqrsData();
-    
+
+    const sessionData = JSON.parse(localStorage.getItem('session'));
+    if (sessionData) {
+      this.thePqrs.user = sessionData;
+    }
+
     console.log("Creando a " + JSON.stringify(this.thePqrs))
     this.pqrsService.create(this.thePqrs).subscribe((jsonResponse: any) => {
       Swal.fire({
         title: 'Enviado', 
         icon: 'success',
       })
-      this.router.navigate(["pqrs/list"])
+      this.router.navigate(["dashboard"])
     });
   }
 
