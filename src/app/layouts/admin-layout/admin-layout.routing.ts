@@ -92,5 +92,21 @@ export const AdminLayoutRoutes: Routes = [
               path: '',
               loadChildren: () => import('src/app/pages/pqrs-cliente/pqrs-cliente.module').then(m => m.PqrsClienteModule)
             }]
-      }
+        },
+
+        {
+            path: 'pqrs',
+            children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/pqrs/pqrs.module').then(m => m.PqrsModule)
+            }]
+        },
+
+        {
+            path: 'roles',
+            children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/roles/roles.module').then(m => m.RolesModule)
+            }]
+        }
 ];

@@ -61,7 +61,7 @@ export class CreateComponent implements OnInit {
     console.log("Creando a " + JSON.stringify(this.thePqrs))
     this.pqrsService.create(this.thePqrs).subscribe((jsonResponse: any) => {
       Swal.fire({
-        title: 'Creado', 
+        title: 'Enviado', 
         icon: 'success',
       })
       this.router.navigate(["pqrs/list"])
