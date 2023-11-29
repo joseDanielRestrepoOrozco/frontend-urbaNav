@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Console } from 'console';
-import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { Rating } from 'src/app/models/rating.model';
+import { RatingService } from 'src/app/services/rating.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,35 +11,31 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  users:User[]
+  ratings:Rating[]
 
-  constructor(private usersService:UserService,
+  constructor(private ratingsService: RatingService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.usersService.list().subscribe((jsonResponse:any) => {
-      this.users = jsonResponse; 
-      console.log(jsonResponse)
+    this.ratingsService.list().subscribe((jsonResponse:any) => {
+      this.ratings = jsonResponse.data; 
     });
-    
   }
 
   create(){
-    this.router.navigate(["users/create"])
+    this.router.navigate(["ratings/create"])
   }
 
-  edit(_id:number){
-    console.log("Editando a " + _id)
-    this.router.navigate(["users/update/" + _id])
+  edit(id:number){
+    console.log("Editando a " + id)
+    this.router.navigate(["ratings/update/" + id])
   }
 
-
-
-  delete(_id:number, role:string){
-    console.log("Eliminando a " + _id)
+  delete(id:number){
+    console.log("Eliminando a " + id)
     Swal.fire({
       title: 'Eliminar',
-      text: "Está seguro que quiere eliminar el usuario?",
+      text: "Está seguro que quiere eliminar la reseña?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -49,8 +44,7 @@ export class ListComponent implements OnInit {
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usersService.delete(_id,role)
-        .subscribe(data => {
+        this.ratingsService.delete(id).subscribe(data => {
             Swal.fire(
               'Eliminado!',
               'Eliminación culminada exitosamente',
