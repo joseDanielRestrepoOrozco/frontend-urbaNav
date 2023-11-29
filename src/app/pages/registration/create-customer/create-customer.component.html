@@ -66,6 +66,19 @@
               <br>
               <div class="row">
                 <div class="col-3">
+                  <label>Contacto de emergencia:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="number" formControlName="contactEmergency">
+                  <div
+                    *ngIf="formGroupValidatorData.contactEmergency.errors && (formGroupValidatorData.contactEmergency.dirty || formGroupValidatorData.contactEmergency.touched)" class="error-message">
+                    <strong *ngIf="formGroupValidatorData.contactEmergency.errors.required">Campo requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
                   <label>Correo:</label>
                 </div>
                 <div class="col-9 position-relative">
