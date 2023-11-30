@@ -19,7 +19,10 @@ export const ROUTES: RouteInfo[] = [
   { path: '/roles/list', title: 'Roles', icon: 'ni-single-02 text-white', class: '', type: 2 },
   { path: '/role-permissions/list', title: 'Roles-Permisos', icon: 'ni-single-02 text-white', class: '', type: 2 },
   { path: '/points/list', title: 'Puntos', icon: 'ni-sound-wave text-white', class: '', type: 2 },
-  { path: '/routes', title: 'Rutas', icon: 'ni-sound-wave text-white', class: '', type: 2 },
+  { path: '/routes/list', title: 'Rutas', icon: 'ni-sound-wave text-white', class: '', type: 2 },
+  { path: '/ratings/list', title: 'Reseñas', icon: 'ni-sound-wave text-white', class: '', type: 2 },
+  { path: '/permissions/list', title: 'Permisos', icon: 'ni-sound-wave text-white', class: '', type: 2 },
+  { path: '/trips/list', title: 'Viajes', icon: 'ni-sound-wave text-white', class: '', type: 2 },
   { path: '/points-route', title: 'Puntos Ruta', icon: 'ni-sound-wave text-white', class: '', type: 2 },
   { path: '/login', title: 'Login', icon: 'ni-key-25 text-white', class: '', type: 3 },
   { path: '/pqrs-cliente/create', title: 'PQRS', icon: 'ni-key-25 text-white', class: '', type: 2 },
@@ -52,4 +55,11 @@ export class SidebarComponent implements OnInit {
       this.theUser=data;
     })
   }
+
+  logout(){
+    console.log("Cerrando cuenta")
+    this.securityService.logout()
+    this.router.navigate(["/dashboard"])
+  }
+
 }

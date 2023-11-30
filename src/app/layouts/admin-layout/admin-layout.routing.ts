@@ -68,7 +68,7 @@ export const AdminLayoutRoutes: Routes = [
                 path: '',
                 loadChildren: () => import('src/app/pages/role-permissions/role-permissions.module').then(m => m.RolePermissionsModule)
             }],
-        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
     {
         path: 'points',
