@@ -57,7 +57,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
+                loadChildren: () => import('src/app/pages/payment-methods/payment-methods.module').then(m => m.PaymentMethodsModule)
             }]
     },
 

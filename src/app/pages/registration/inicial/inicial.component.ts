@@ -9,7 +9,7 @@ import { RoleService } from 'src/app/services/role.service';
 })
 export class InicialComponent implements OnInit {
 
-  constructor(private router: Router, private roleService: RoleService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }

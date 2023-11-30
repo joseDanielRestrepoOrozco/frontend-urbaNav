@@ -1,3 +1,4 @@
+import { Customer } from "./customer.model";
 import { Role } from "./role.model";
 
 export class User {
@@ -10,5 +11,6 @@ export class User {
     password?:string;
     role?:Role;
     token?:string;
+    customer?:Customer ={};
 
 }

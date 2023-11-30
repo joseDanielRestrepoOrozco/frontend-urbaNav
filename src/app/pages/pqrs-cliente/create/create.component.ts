@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Pqrs } from 'src/app/models/pqrs.model';
 import { PqrsService } from 'src/app/services/pqrs.service';
 import Swal from 'sweetalert2';
