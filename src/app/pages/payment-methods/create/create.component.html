@@ -62,6 +62,18 @@
                             </div>
                         </div>
                         <br>
+                        <!-- Sección de Usuario -->
+                        <div class="row" *ngIf="creationMode">
+                            <div class="col-3">
+                            <label>Usuario:</label>
+                            </div>
+                            <div class="col-9">
+                                <select class="form-control" formControlName="user">
+                                    <option *ngFor="let user of users" [value]="user._id">{{ user.name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row">
                             <div class="col-3">
 
@@ -73,6 +85,7 @@
                                     (click)="update()">Actualizar</button>
                             </div>
                         </div>
+                        <br>
                     </form>
                 </div>
             </div>

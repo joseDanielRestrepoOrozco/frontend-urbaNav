@@ -57,7 +57,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
             {
                 path: '',
-                loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
+                loadChildren: () => import('src/app/pages/payment-methods/payment-methods.module').then(m => m.PaymentMethodsModule)
             }]
     },
 
@@ -68,7 +68,7 @@ export const AdminLayoutRoutes: Routes = [
                 path: '',
                 loadChildren: () => import('src/app/pages/role-permissions/role-permissions.module').then(m => m.RolePermissionsModule)
             }],
-        //canActivate: [AuthenticatedGuard] && [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
     {
         path: 'points',

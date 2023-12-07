@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { SecurityService } from 'src/app/services/security.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  theUser: User
+  subscription: Subscription;
+  constructor(
+    private securityService: SecurityService,
+    
+    ) { }
 
   ngOnInit() {
+    this.subscription = this.securityService.getUser().subscribe(data =>{
+      this.theUser=data
+    });
   }
-
 }

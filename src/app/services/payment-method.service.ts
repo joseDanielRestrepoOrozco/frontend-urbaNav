@@ -34,4 +34,8 @@ export class PaymentMethodService {
     return this.http.delete(`${environment.url_ms_security}/private/paymentmethod/${_id}`);
   }
 
+  matchPaymentMethodUser(paymentMethod_id: string, user_id: string){
+    return this.http.put(`${environment.url_ms_security}/private/paymentmethod/${paymentMethod_id}/user/${user_id}`, null);
+  }
+
 }
