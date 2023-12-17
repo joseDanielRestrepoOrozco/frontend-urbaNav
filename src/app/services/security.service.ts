@@ -49,6 +49,11 @@ export class SecurityService {
     return this.http.post<string>(`${environment.url_ms_security}/api/public/security/login`, theUser, { headers, responseType: 'text' as 'json' });
   }
 
+  changePassword(theUser: User):Observable<any>{
+    let headers = new HttpHeaders();
+    return this.http.post<string>(`${environment.url_ms_security}/api/public/security/changePassword`, theUser, { headers, responseType: 'text' as 'json' });
+  }
+
   /**
     * Guarda los datos tales como el identificador
     * y token del usuario en una base de datos

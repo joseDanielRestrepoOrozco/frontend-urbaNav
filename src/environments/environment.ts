@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   url_ms_urbannav: "http://127.0.0.1:3333",
   url_ms_security: "http://127.0.0.1:8080",
+  url_ms_notifications: "http://127.0.0.1:5000",
   mapPK: 'pk.eyJ1IjoianVhbnZlbCIsImEiOiJja2UxZjRzNW4yeTdrMnNtcHF2YmptNXZjIn0.QsPuUwiiCaAv-OVd_-vD4g'
 };
 
