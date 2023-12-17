@@ -1,4 +1,4 @@
-$background-image-path: "https://s1.1zoom.me/big0/970/Motion_Night_493472.jpg";
+$background-image-path: "https://blog.gbsgroup.net/hubfs/Featured-image-Como-calcular-y-disminuir-los-impuestos-para-conductores-de-Uber-y-Lyft-1-1080x675-2.webp";
 
 .login-backround {
   background: url($background-image-path) no-repeat center center;
@@ -12,12 +12,4 @@ $background-image-path: "https://s1.1zoom.me/big0/970/Motion_Night_493472.jpg";
   display: block;
   color: rgb(255, 86, 86);
   padding: 12px 10px 0 10px;
-}
-
-.forgot-password-link {
-  transition: color 0.3s ease;
-  &:hover {
-    color: blue;
-    text-decoration: none;
-  }
 }

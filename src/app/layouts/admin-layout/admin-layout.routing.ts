@@ -11,6 +11,7 @@ import { AuthenticatedGuard } from 'src/app/guards/authenticated.guard';
 import { DriverGuard } from 'src/app/guards/driver.guard';
 import { AdministratorGuard } from 'src/app/guards/administrator.guard';
 import { CustomerGuard } from 'src/app/guards/customer.guard';
+import { SessionComponent } from 'src/app/pages/session/session.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -144,5 +145,6 @@ export const AdminLayoutRoutes: Routes = [
             loadChildren: () => import('src/app/pages/ratings/ratings.module').then(m => m.RatingsModule)
         }],
         //canActivate: [AdministratorGuard]
-    }
+    },
+    { path: 'session', component: SessionComponent }
 ];

@@ -13,5 +13,12 @@ export const AuthLayoutRoutes: Routes = [
         loadChildren: () => import('src/app/pages/registration/registration.module').then(m => m.RegistrationModule )
     }],
     canActivate: [NonAuthenticatedGuard] 
-} 
+    },
+    { path: 'cambio-contraseña',   
+    children: [
+    {
+        path: '',
+        loadChildren: () => import('src/app/pages/cambio-contraseña/cambio-contraseña.module').then(m => m.CambioContraseñaModule )
+    }],
+    }
 ];

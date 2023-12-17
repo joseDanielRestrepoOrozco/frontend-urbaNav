@@ -20,6 +20,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.formBuilding()
   }
+
+  cambio(){
+    this.router.navigate(["cambio-contraseña/inicial"])
+  }
+
   formBuilding(){
     this.formGroupValidator=this.formBuilder.group({
       email : ['', [Validators.required, Validators.email]],

@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ShowHidePasswordDirective } from './show-hide-password.directive';
+import { SessionComponent } from './pages/session/session.component';
 
 
 
@@ -31,6 +32,7 @@ import { ShowHidePasswordDirective } from './show-hide-password.directive';
     AdminLayoutComponent,
     AuthLayoutComponent,
     ShowHidePasswordDirective,
+    SessionComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
