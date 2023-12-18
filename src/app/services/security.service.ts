@@ -75,6 +75,14 @@ export class SecurityService {
     return this.http.post<string>(`${environment.url_ms_security}/api/public/security/changePassword`, theUser, { headers, responseType: 'text' as 'json' });
   }
 
+  verifyCode2(email: string, code: string): Observable<boolean> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let body = { email: email, code: code };
+    return this.http.post<boolean>(`${environment.url_ms_security}/api/public/security/verifyCode2`, body, { headers });
+  }
+
+ 
+
   /**
     * Guarda los datos tales como el identificador
     * y token del usuario en una base de datos

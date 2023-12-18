@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SecurityService } from 'src/app/services/security.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-codigo',
@@ -12,13 +14,13 @@ export class CodigoComponent implements OnInit, AfterViewInit {
   @ViewChild('digit3') digit3!: ElementRef;
   @ViewChild('digit4') digit4!: ElementRef;
 
-  constructor( private router:Router) { }
+  userEmail: string = ''
+
+  constructor( private router:Router,
+    private securityService: SecurityService) { }
 
   ngOnInit(): void {
-  }
-
-  nuevo(){
-    this.router.navigate(["cambio-contraseña/cambio"])
+    this.userEmail = localStorage.getItem('userEmail') || '';
   }
 
   ngAfterViewInit(): void {
@@ -55,6 +57,35 @@ export class CodigoComponent implements OnInit, AfterViewInit {
           break;
       }
     }
+  }
+
+  nuevo() {
+    const code = this.digit1.nativeElement.value + this.digit2.nativeElement.value + 
+                 this.digit3.nativeElement.value + this.digit4.nativeElement.value;
+  
+    this.securityService.verifyCode2(this.userEmail, code).subscribe({
+      next: (isValid) => {
+        if (isValid) {
+          this.router.navigate(["cambio-contraseña/cambio"])// Si el código es correcto, inicia sesión y redirige al dashboard
+        } else {
+          Swal.fire({
+            title: 'Código incorrecto',
+            text: 'Verifica tu bandeja de correo el código que te enviamos',
+            icon: 'error',
+            timer: 5000 
+          });
+        }
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error en la verificación',
+          text: error,
+          icon: 'error',
+          timer: 5000 
+        });
+      }
+    });
+
   }
 }
 

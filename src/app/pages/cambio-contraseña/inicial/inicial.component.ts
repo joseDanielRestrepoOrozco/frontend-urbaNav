@@ -33,6 +33,8 @@ export class InicialComponent implements OnInit {
       return false;
     }
     let theUser=this.userData()
+    // Guardar el correo electrónico en el localStorage
+    localStorage.setItem('userEmail', theUser.email);
     this.securityService.changePassword(theUser).subscribe({
       next: (data) => {
         if (data!==""){ 
@@ -42,13 +44,13 @@ export class InicialComponent implements OnInit {
             next: (data) => {
               if (data) {
                 this.router.navigate(["cambio-contraseña/codigo"]);
-            } 
+              } 
             },
       
             error: (error) => {
               Swal.fire({
                 title: 'Error',
-                text: error,
+                text: 'Intentalo de nuevo',
                 icon: 'error',
                 timer:5000 
               });
