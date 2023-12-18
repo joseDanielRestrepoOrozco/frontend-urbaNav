@@ -35,12 +35,14 @@ export class InicialComponent implements OnInit {
     let theUser=this.userData()
     this.securityService.changePassword(theUser).subscribe({
       next: (data) => {
-        if (data){ 
+        if (data!==""){ 
+          theUser._id=data;
+          console.log(data)
           this.notificationService.changePassword(theUser).subscribe({
             next: (data) => {
-              console.log(data)
-              this.router.navigate(["cambio-contraseña/codigo"])
-              // this.securityService.saveSessionData(data);
+              if (data) {
+                this.router.navigate(["cambio-contraseña/codigo"]);
+            } 
             },
       
             error: (error) => {
