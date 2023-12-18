@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +48,28 @@ export class SecurityService {
     return this.http.post<string>(`${environment.url_ms_security}/api/public/security/login`, theUser, { headers, responseType: 'text' as 'json' });
   }
 
+  login2(theUser: User):Observable<any>{
+    let headers = new HttpHeaders();
+    return this.http.post<string>(`${environment.url_ms_security}/api/public/security/login2`, theUser, { headers, responseType: 'text' as 'json' });
+  }
+
+  verifyCode(email: string, code: number): Observable<boolean> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let body = { email: email, code: code };
+    return this.http.post<boolean>(`${environment.url_ms_security}/api/public/security/verifyCode`, body, { headers });
+  }
+
+  getSessionCode(email: string): Observable<number> {
+    let headers = new HttpHeaders();
+    let params = new HttpParams().set('email', email);
+    return this.http.get<number>(`${environment.url_ms_security}/api/public/security/getSessionCode`, { headers, params });
+  }
+
+  deleteSession(userId: string): Observable<any> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.delete(`${environment.url_ms_security}/private/sessions/delete/${userId}`, { headers });
+  }
+  
   changePassword(theUser: User):Observable<any>{
     let headers = new HttpHeaders();
     return this.http.post<string>(`${environment.url_ms_security}/api/public/security/changePassword`, theUser, { headers, responseType: 'text' as 'json' });

@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ShowHidePasswordDirective } from './show-hide-password.directive';
 import { SessionComponent } from './pages/session/session.component';
+import { CodeVerificationComponent } from './pages/code-verification/code-verification.component';
 
 
 
@@ -33,6 +34,7 @@ import { SessionComponent } from './pages/session/session.component';
     AuthLayoutComponent,
     ShowHidePasswordDirective,
     SessionComponent,
+    CodeVerificationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
