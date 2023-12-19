@@ -124,7 +124,7 @@ export class CodeVerificationComponent implements OnInit {
           "_id": dataUser["_id"],
           "name": dataUser["name"],
           "email": dataUser["email"],
-          "token": dataUser["token"],
+          "token": token,
           "role": dataUser["role"],
         }
         this.securityService.saveSessionData(theUser);
