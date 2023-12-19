@@ -26,6 +26,14 @@ export const AdminLayoutRoutes: Routes = [
                 loadChildren: () => import('src/app/pages/vehicles/vehicles.module').then(m => m.VehiclesModule)
             }]
     },
+    {
+        path: 'drivers',
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/drivers/drivers.module').then(m => m.DriversModule)
+            }]
+    },
 
     {
         path: 'bill',

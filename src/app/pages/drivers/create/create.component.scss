@@ -1,0 +1,38 @@
+.table-responsive {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Establece un tamaño del 100% para el mapa y centra el contenido dentro del mapa */
+  #map {
+    width: 100%;
+    height: 800px; /* Puedes ajustar la altura según tus necesidades */
+    margin: 0 auto; /* Centra el mapa horizontalmente */
+  }
+
+  .marker{
+    width: 50%;
+    height:500px;
+    background-color: rgb(255, 0, 0);
+    //background-image: url("../../../../assets/img/customer/carro.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+
+  .box-inputs {
+    background-color: #1d267d; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    
+    width: 50%;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10px;
+    /* Centrado horizontal y vertical usando grid */
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }

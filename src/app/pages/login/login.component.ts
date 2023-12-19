@@ -65,13 +65,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.securityService.getUserFromToken(token).subscribe({
       next: dataUser =>{
         console.log(dataUser)
-        let theUser:User={
+        let theUser={
           "_id":dataUser["_id"],
           "name":dataUser["name"],
           "email":dataUser["email"],
           "token":dataUser["token"],
+          "vehicles":0,
           "role":dataUser["role"],
         }
+        console.log(dataUser)
         this.securityService.saveSessionData(theUser);
       }
     })
