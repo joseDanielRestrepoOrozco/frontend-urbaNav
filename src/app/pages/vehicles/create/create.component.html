@@ -43,7 +43,7 @@
                                 <label>Año:</label>
                             </div>
                             <div class="col-9">
-                                <input class="form-control" type="text" formControlName="year">
+                                <input class="form-control" type="date" formControlName="year">
                                 <div *ngIf="formGroupValidatorData.year.errors && (formGroupValidatorData.year.dirty || formGroupValidatorData.year.touched)">
                                     <strong *ngIf="formGroupValidatorData.year.errors.required">Campo requerido</strong>
                                 </div>

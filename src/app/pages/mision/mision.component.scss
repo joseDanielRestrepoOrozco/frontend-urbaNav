@@ -6,22 +6,22 @@
 .card-container {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; // Espacio entre tarjetas
+    margin-bottom: 20px; 
   }
   
   .card-wrapper {
     flex: 1;
-    margin: 0 50px; // Ajusta según sea necesario para dar espacio alrededor de cada tarjeta
-    border: 2px solid #1d267d; /* Ajusta el color del borde exterior y el ancho según sea necesario */
-    border-radius: 8px; /* Ajusta el radio según sea necesario */
-    overflow: visible; /* Asegura que el borde no se solape con el contenido de la tarjeta */
+    margin: 0 50px; 
+    border: 2px solid #1d267d; 
+    border-radius: 8px; 
+    overflow: visible; 
   }
   
   .card {
     flex: 1;
     border-radius: 10px;
-    overflow: visible; // Permitir que los contenidos se salgan de la tarjeta
-    position: relative; // Cambiado a posición relativa
+    overflow: visible; 
+    position: relative; 
     margin: 10px;
     }
   
@@ -38,11 +38,11 @@
   }
   
   .blue-card {
-    background-color: #9391ff; // Color de fondo azul
+    background-color: #9391ff; 
   }
   
   .purple-card {
-    background-color: #5c469c; // Color de fondo morado
+    background-color: #5c469c; 
   }
   
   .car-image {
@@ -52,14 +52,14 @@
     top: -25px;
     left: -40px;
     border-radius: 10px;
-    z-index: 1; // Asegura que la imagen esté sobre el contenido de la tarjeta
+    z-index: 1; 
     }
 
   
     .content {
         padding: 20px;
         text-align: center;
-        margin-top: 100px; // Ajusta según sea necesario para dar espacio a la imagen
+        margin-top: 100px; 
     }
   
   .title {
@@ -74,11 +74,11 @@
 
   @media screen and (max-width: 1100px) {
     .card-container {
-        margin-bottom: 10px; // Ajusta el espacio entre tarjetas para pantallas más grandes
+        margin-bottom: 10px; 
     }
     
     .card-wrapper {
-        margin: 10px; // Ajusta el espacio alrededor de cada tarjeta para pantallas más grandes
+        margin: 10px; 
     }
 
     .margin-top-20 {

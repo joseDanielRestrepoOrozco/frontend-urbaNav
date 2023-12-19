@@ -35,7 +35,7 @@
                     <th>{{actualPqrs.type}}</th>
                     <th>{{actualPqrs.description}}</th>
                     <th>{{actualPqrs.date}}</th>
-                    <th>{{actualPqrs.user?.name}}</th>
+                    <th>{{actualPqrs.user?._id}}</th>
                   <th>
                     <button type="button" class="btn btn-primary" (click)="edit(actualPqrs._id)">Editar</button>
                     <button type="button" class="btn btn-danger" (click)="delete(actualPqrs._id)">Eliminar</button>

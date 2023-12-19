@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentMethod } from 'src/app/models/payment-method.model';
+import { User } from 'src/app/models/user.model';
 import { PaymentMethodService } from 'src/app/services/payment-method.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,20 +18,32 @@ export class CreateComponent implements OnInit {
   creationMode: boolean;
   formGroupValidator: FormGroup;
 
+  users: User[] = [];
+
   constructor(private paymentmethodsService:PaymentMethodService,
               private router:Router,
               private rutaActiva:ActivatedRoute,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private userService: UserService) {
     this.thePaymentmethod = {_id:"", type:"", cardNumber: "", cardCVV:"", expiryDate:"2023-05-02"}
     this.creationMode = true;
   }
 
   ngOnInit(): void {
+    this.loadUsers();
     this.formBuilding();
     if (this.rutaActiva.snapshot.params.id){
       this.creationMode=false;
       this.show(this.rutaActiva.snapshot.params.id)
+    } else {
+      this.creationMode = true;
     }
+  }
+
+  loadUsers() {
+    this.userService.list().subscribe(data => {
+      this.users = data;
+    });
   }
 
   formBuilding(){
@@ -39,7 +53,7 @@ export class CreateComponent implements OnInit {
       cardNumber : ['',[Validators.required]],
       cardCVV : ['',[Validators.required]],
       expiryDate : ['',[Validators.required]],
-      // user: ['',[Validators.required]]
+      user: new FormControl('',[Validators.required])
     });
   }
 
@@ -86,6 +100,7 @@ export class CreateComponent implements OnInit {
     
     console.log("Creando a " + JSON.stringify(this.thePaymentmethod))
     this.paymentmethodsService.create(this.thePaymentmethod).subscribe((jsonResponse: any) => {
+      this.matchUserWithPaymentMethod(jsonResponse._id);
       Swal.fire({
         title: 'Creado', 
         icon: 'success',
@@ -96,11 +111,19 @@ export class CreateComponent implements OnInit {
 
   update(){
     this.paymentmethodsService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
+      this.matchUserWithPaymentMethod(jsonResponse._id);
       Swal.fire({
         title: 'Actualizando',
         icon: 'success',
       })
       this.router.navigate(["payment-methods/list"])
+    });
+  }
+
+  private matchUserWithPaymentMethod(paymentMethodId: string) {
+    const userId = this.formGroupValidatorData.user.value;
+    this.paymentmethodsService.matchPaymentMethodUser(paymentMethodId, userId).subscribe(response => {
+      // Manejar la respuesta aquí
     });
   }
 

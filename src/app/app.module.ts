@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+import { SessionComponent } from './pages/session/session.component';
+import { CodeVerificationComponent } from './pages/code-verification/code-verification.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -38,8 +41,14 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AdminLayoutComponent,
     AuthLayoutComponent,
     ShowHidePasswordDirective,
+    SessionComponent,
+    CodeVerificationComponent,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
