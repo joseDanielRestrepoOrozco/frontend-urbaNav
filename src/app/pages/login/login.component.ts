@@ -97,23 +97,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
   
-  
-
-  getUserFromToken(token: string) {
-    this.securityService.getUserFromToken(token).subscribe({
-      next: dataUser =>{
-        console.log(dataUser)
-        let theUser:User={
-          "_id":dataUser["_id"],
-          "name":dataUser["name"],
-          "email":dataUser["email"],
-          "token":dataUser["token"],
-          "role":dataUser["role"],
-        }
-        this.securityService.saveSessionData(theUser);
-      }
-    })
-  }
+  // getUserFromToken(token: string) {
+  //   console.log(token)
+  //   this.securityService.getUserFromToken(token).subscribe({
+  //     next: dataUser =>{
+  //       let theUser:User={
+  //         "_id":dataUser["_id"],
+  //         "name":dataUser["name"],
+  //         "email":dataUser["email"],
+  //         "token": token,
+  //         "role":dataUser["role"],
+  //       }
+  //       this.securityService.saveSessionData(theUser);
+  //     }
+  //   })
+  // }
 
 
   ngOnDestroy() {

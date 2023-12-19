@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { ShowHidePasswordDirective } from './show-hide-password.directive';
 import { SessionComponent } from './pages/session/session.component';
 import { CodeVerificationComponent } from './pages/code-verification/code-verification.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -36,7 +37,11 @@ import { CodeVerificationComponent } from './pages/code-verification/code-verifi
     SessionComponent,
     CodeVerificationComponent,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
