@@ -146,5 +146,13 @@ export const AdminLayoutRoutes: Routes = [
         }],
         canActivate: [AdministratorGuard]
     },
-    { path: 'session', component: SessionComponent }
+    { path: 'session', component: SessionComponent },
+    {
+        path: 'change-login',
+        children: [{
+            path: '',
+            loadChildren: () => import('src/app/pages/change-login/change-login.module').then(m => m.ChangeLoginModule)
+        }],
+        canActivate: [AdministratorGuard]
+    }
 ];

@@ -1,0 +1,15 @@
+$background-image-path: "https://siempreauto.com/wp-content/uploads/sites/9/2023/03/conduccion-noctura-luces.jpg?w=4096";
+
+.login-backround {
+  background: url($background-image-path) no-repeat center center;
+  background-size: cover;
+}
+
+.error-message {
+  font-size: 0.8em;
+  text-align: center;
+  width: 100%;
+  display: block;
+  color: rgb(255, 86, 86);
+  padding: 12px 10px 0 10px;
+}
