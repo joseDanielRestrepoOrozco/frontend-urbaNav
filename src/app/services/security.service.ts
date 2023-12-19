@@ -87,6 +87,18 @@ export class SecurityService {
     return this.http.put<boolean>(`${environment.url_ms_security}/api/public/security/${userId}/password`, body, { headers });
   }
 
+  password2(currentPassword: string, newPassword: string, confirmPassword: string): Observable<boolean> {
+    const body = {
+      email: this.userActiveSession.email,
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword
+    };
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<boolean>(`${environment.url_ms_security}/api/public/security/password2`, body, { headers });
+  }
+  
+
   /**
     * Guarda los datos tales como el identificador
     * y token del usuario en una base de datos
