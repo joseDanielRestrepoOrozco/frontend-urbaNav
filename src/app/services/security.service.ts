@@ -81,7 +81,11 @@ export class SecurityService {
     return this.http.post<boolean>(`${environment.url_ms_security}/api/public/security/verifyCode2`, body, { headers });
   }
 
- 
+  password(userId: string, newPassword: string): Observable<boolean> {
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let body = { password: newPassword };
+    return this.http.put<boolean>(`${environment.url_ms_security}/api/public/security/${userId}/password`, body, { headers });
+  }
 
   /**
     * Guarda los datos tales como el identificador

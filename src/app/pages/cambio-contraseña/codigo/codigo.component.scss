@@ -24,3 +24,11 @@ $background-image-path: "https://blog.gbsgroup.net/hubfs/Featured-image-Como-cal
     }
 }
 
+.correo {
+    transition: color 0.3s ease;
+    &:hover {
+      color: blue;
+      text-decoration: none;
+    }
+  }
+

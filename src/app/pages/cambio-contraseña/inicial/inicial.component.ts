@@ -40,6 +40,7 @@ export class InicialComponent implements OnInit {
         if (data!==""){ 
           theUser._id=data;
           console.log(data)
+          localStorage.setItem('userId', theUser._id);
           this.notificationService.changePassword(theUser).subscribe({
             next: (data) => {
               if (data) {
@@ -74,6 +75,7 @@ export class InicialComponent implements OnInit {
 
   formBuilding(){
     this.formGroupValidator=this.formBuilder.group({
+      _id:[''],
       email : ['', [Validators.required, Validators.email]],
     });
   }
@@ -85,6 +87,7 @@ export class InicialComponent implements OnInit {
   userData() : User{
     let theUser= new User();
     theUser.email=this.formGroupValidatorData.email.value;
+    theUser._id=this.formGroupValidatorData._id.value;
     return theUser;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'src/app/services/notifications.service';
 import { SecurityService } from 'src/app/services/security.service';
 import Swal from 'sweetalert2';
 
@@ -15,12 +16,15 @@ export class CodigoComponent implements OnInit, AfterViewInit {
   @ViewChild('digit4') digit4!: ElementRef;
 
   userEmail: string = ''
+  userId: string = ''
 
   constructor( private router:Router,
+    private notificationService:NotificationsService,
     private securityService: SecurityService) { }
 
   ngOnInit(): void {
     this.userEmail = localStorage.getItem('userEmail') || '';
+    this.userId = localStorage.getItem('userId') || '';
   }
 
   ngAfterViewInit(): void {
@@ -66,7 +70,7 @@ export class CodigoComponent implements OnInit, AfterViewInit {
     this.securityService.verifyCode2(this.userEmail, code).subscribe({
       next: (isValid) => {
         if (isValid) {
-          this.router.navigate(["cambio-contraseña/cambio"])// Si el código es correcto, inicia sesión y redirige al dashboard
+          this.router.navigate(["cambio-contraseña/cambio"])
         } else {
           Swal.fire({
             title: 'Código incorrecto',
@@ -85,7 +89,6 @@ export class CodigoComponent implements OnInit, AfterViewInit {
         });
       }
     });
-
   }
 }
 
