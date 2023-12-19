@@ -32,6 +32,14 @@ export const AdminLayoutRoutes: Routes = [
             }],
         canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
+    {
+        path: 'drivers',
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/drivers/drivers.module').then(m => m.DriversModule)
+            }]
+    },
 
     {
         path: 'bill',

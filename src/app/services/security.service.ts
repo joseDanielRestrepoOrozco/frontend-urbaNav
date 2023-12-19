@@ -107,8 +107,9 @@ export class SecurityService {
     * @returns un booleano que indica si la información
     * fue almacenada correctamente
   */
-  saveSessionData(userData: User) {
+  saveSessionData(userData) {
     let actualSession = localStorage.getItem('session');
+    console.log(userData)
     if (actualSession) {
       return false;
     } else {

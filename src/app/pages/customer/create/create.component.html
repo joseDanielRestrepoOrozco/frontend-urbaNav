@@ -1,27 +1,31 @@
 
-<div class="box-inputs">
-  <div>
-    <div id="geocoder" #asGeoCoder class="geocoder"></div>
-  </div>
 
-  <div (click)="changeMode('start')" [ngClass]="{'active-way':modeInput ==='start'}">
-    <div class="mock-label">Inicio</div>
-    <div class="mock-input">{{wayPoints?.start?.place_name}}</div>
-  </div>
-
-  <div (click)="changeMode('end')" [ngClass]="{'active-way':modeInput ==='end'}">
-    <div class="mock-label">Final</div>
-    <div class="mock-input">{{wayPoints?.end?.place_name}}</div>
-  </div>
-
-</div>
           <div class="table-responsive">
                 <div id="map" #asMap class="map" class="map"></div>
             
           </div>
 
           <div class="box-inputs">
-            <button class="btn btn-warning" (click)="drawRoute()">Dibujar Ruta</button>
-            <button class="btn btn-warning" (click)="prueba()">Marcador</button>
+            <!-- Input para el precio -->
+            <div class="price-input">
+                <div class="mock-label">Precio</div>
+                <input type="number" [(ngModel)]="precio" placeholder="Ingrese el precio" />
+            </div>
+        
+            <!-- Inicio -->
+            <div>
+                <div class="mock-label">Inicio</div>
+                <div id="geocoder" #asGeoCoder class="geocoder"></div>
+            </div>
+        
+            <!-- Final -->
+            <div>
+                <div class="mock-label">Final</div>
+                <div id="geocoder2" #asGeoCoder2 class="geocoder2"></div>
+            </div>
+        </div>
+          <div class="box-input">
+
             <button class="btn btn-warning" (click)="seguir()">Seguir ruta</button>
+            <button class="btn btn-warning" (click)="driver()">Encontrar Conductor</button>
           </div>
