@@ -58,7 +58,7 @@ export const AdminLayoutRoutes: Routes = [
                 path: '',
                 loadChildren: () => import('src/app/pages/customer/customer.module').then(m => m.CustomerModule)
             }],
-        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard] && [CustomerGuard]
     },
 
     {
