@@ -90,7 +90,7 @@
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
+          <a (click)="logout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Logout</span>
           </a>
@@ -141,17 +141,11 @@
       </form>
       <!-- Navigation -->
       <ul class="navbar-nav">
-        <li
-          *ngFor="let menuItem of menuItems"
-          class="{{ menuItem.class }} nav-item"
-        >
-          <a
-            routerLinkActive="active"
-            [routerLink]="[menuItem.path]"
-            class="nav-link"
-          >
-            <i class="ni {{ menuItem.icon }}"></i>
-            {{ menuItem.title }}
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+          <a *ngIf="menuItem.type==1 || (menuItem.type==(securityService.sessionExists()?2:3))"
+            routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
           </a>
         </li>
       </ul>

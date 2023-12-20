@@ -4,18 +4,16 @@ import { CommonModule } from '@angular/common';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CreateComponent } from './create/create.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { FormsModule } from '@angular/forms';
 
-
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 @NgModule({
   declarations: [
     CreateComponent
   ],
   imports: [
     HttpClientModule,
-    SocketIoModule.forRoot(config),
     CommonModule,
+    FormsModule,
     CustomerRoutingModule
   ]
 })

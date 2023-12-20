@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Pqrs } from 'src/app/models/pqrs.model';
 import { PqrsService } from 'src/app/services/pqrs.service';
 import Swal from 'sweetalert2';
@@ -57,14 +57,19 @@ export class CreateComponent implements OnInit {
       return false;
     }
     this.thePqrs = this.pqrsData();
-    
+
+    const sessionData = JSON.parse(localStorage.getItem('session'));
+    if (sessionData) {
+      this.thePqrs.user = sessionData;
+    }
+
     console.log("Creando a " + JSON.stringify(this.thePqrs))
     this.pqrsService.create(this.thePqrs).subscribe((jsonResponse: any) => {
       Swal.fire({
-        title: 'Creado', 
+        title: 'Enviado', 
         icon: 'success',
       })
-      this.router.navigate(["pqrs/list"])
+      this.router.navigate(["dashboard"])
     });
   }
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
+import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -15,13 +17,15 @@ export class CreateComponent implements OnInit {
   theUser: User;
   creationMode: boolean;
   formGroupValidator: FormGroup;
-  passwordField: any = { type: 'password' };
+  selectedRole: Role = { _id: '', name: '', description: '' };
+  passwordField: any = { type: 'password' }; 
 
   constructor(private usersService: UserService,
-    private router: Router,
-    private rutaActiva: ActivatedRoute,
-    private formBuilder: FormBuilder) {
-    this.theUser = { _id: "", name: "", surname: "", phone: "", birthdate: "2023-05-02", email: "", password: "" }
+              private router:Router,
+              private roleService: RoleService,
+              private rutaActiva:ActivatedRoute,
+              private formBuilder: FormBuilder) { 
+    this.theUser = {_id:"", name:"", surname: "", phone:"", birthdate:"2023-05-02", email:"",password:"", role: {}}
     this.creationMode = true;
   }
 
@@ -31,6 +35,11 @@ export class CreateComponent implements OnInit {
       this.creationMode = false;
       this.show(this.rutaActiva.snapshot.params.id)
     }
+    this.roleService.list().subscribe((roles: Role[]) => {
+      if (roles.length > 0) {
+        this.selectedRole = roles[2];
+      }
+    });
   }
 
   formBuilding() {
@@ -149,7 +158,8 @@ export class CreateComponent implements OnInit {
       return false;
     }
     this.theUser = this.userData();
-
+    this.theUser.role = this.selectedRole;
+    
     console.log("Creando a " + JSON.stringify(this.theUser))
     this.usersService.create(this.theUser).subscribe((jsonResponse: any) => {
       Swal.fire({
@@ -169,10 +179,5 @@ export class CreateComponent implements OnInit {
       this.router.navigate(["users/list"])
     });
   }
-
-  // transformatDate(theDate: string): string {
-  //   const theDateObject = new Date(theDate);
-  //   return `${theDateObject.getFullYear()}-${theDateObject.getMonth() + 1}-${theDateObject.getDate()}`;
-  // }
 
 }

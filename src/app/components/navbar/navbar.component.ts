@@ -43,4 +43,10 @@ export class NavbarComponent implements OnInit {
     return 'Dashboard';
   }
 
+  logout(){
+    console.log("Cerrando cuenta")
+    this.securityService.logout()
+    this.router.navigate(["/dashboard"])
+  }
+
 }

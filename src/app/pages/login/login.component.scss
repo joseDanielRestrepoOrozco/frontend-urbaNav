@@ -13,3 +13,11 @@ $background-image-path: "https://s1.1zoom.me/big0/970/Motion_Night_493472.jpg";
   color: rgb(255, 86, 86);
   padding: 12px 10px 0 10px;
 }
+
+.forgot-password-link {
+  transition: color 0.3s ease;
+  &:hover {
+    color: blue;
+    text-decoration: none;
+  }
+}

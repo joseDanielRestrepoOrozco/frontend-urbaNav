@@ -1,0 +1,49 @@
+<div class="login-backround">
+    <div class="header py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Cambio de contraseña</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent">
+              <div class="card-body px-lg-5 py-lg-2">
+                <div class="text-center text-muted mb-4">
+                  <small>Ingresa tu correo electrónico</small>
+                </div>
+                <form [formGroup]="formGroupValidator">
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      </div>
+                      <input class="form-control" placeholder="Correo electrónico" type="email" formControlName="email">
+                      <div
+                        *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)">
+                        <strong *ngIf="formGroupValidatorData.email.errors.required" class="error-message" >Campo requerido</strong>
+                        <strong *ngIf="formGroupValidatorData.email.errors.email" class="error-message" >Este campo debe ser un email</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center text-muted mb-4">
+                    <small>Te enviaremos un código a tu correo para que puedas cambiar la contraseña</small>
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary my-4" (click)="codigo()">Siguiente</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -39,7 +39,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" formControlName="email">
+                    <input class="form-control" placeholder="Correo electrónico" type="email" formControlName="email">
                     <div
                       *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)">
                       <strong *ngIf="formGroupValidatorData.email.errors.required" class="error-message" >Campo requerido</strong>
@@ -52,7 +52,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" formControlName="password">
+                    <input class="form-control" placeholder="Contraseña" type="password" formControlName="password">
                     <div
                       *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
                       <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
@@ -68,15 +68,16 @@
                 <div class="text-center">
                   <button type="button" class="btn btn-primary my-4" (click)="login()">Ingresar</button>
                 </div>
+                <div class="text-muted mb-4 d-flex justify-content-between">
+                  <a class="forgot-password-link">
+                    <small (click)="cambio()">¿Olvidaste tu contraseña?</small>
+                  </a>
+                  <a class="forgot-password-link">
+                    <small (click)="registrarse()">Crear cuenta</small>
+                  </a>
+                </div>
+                
               </form>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <a href="javascript:void(0)" class="text-light"><small>Perdio la contraseña?</small></a>
-            </div>
-            <div class="col-6 text-right">
-              <a href="javascript:void(0)" class="text-light"><small>Crear una nueva cuenta</small></a>
             </div>
           </div>
         </div>

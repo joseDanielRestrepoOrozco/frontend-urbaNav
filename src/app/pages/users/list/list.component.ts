@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Console } from 'console';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -50,14 +49,14 @@ export class ListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.usersService.delete(_id,role)
-        /*.subscribe(data => {
+        .subscribe(data => {
             Swal.fire(
               'Eliminado!',
               'Eliminación culminada exitosamente',
               'success'
             )
             this.ngOnInit();
-          });*/
+          });
       }
     })
   

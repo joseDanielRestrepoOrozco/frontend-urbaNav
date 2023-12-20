@@ -1,0 +1,41 @@
+<div class="login-backround">
+    <div class="header py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Código de verificación</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent">
+              <div class="card-body px-lg-5 py-lg-2">
+                <div class="text-center text-muted mb-4">
+                  <small>Ingresa el codigo que te enviamos al correo electronico</small>
+                </div>
+                <form>
+                    <div class="digit-container">
+                        <!-- Código para ingresar cuatro dígitos que sean solo números -->
+                        <input #digit1 type="text" class="form-control digit-input" maxlength="1" (input)="onDigitInput(1, $event)" required>
+                        <input #digit2 type="text" class="form-control digit-input" maxlength="1" (input)="onDigitInput(2, $event)" required>
+                        <input #digit3 type="text" class="form-control digit-input" maxlength="1" (input)="onDigitInput(3, $event)" required>
+                        <input #digit4 type="text" class="form-control digit-input" maxlength="1" (input)="onDigitInput(4, $event)" required>
+                    </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary my-4" (click)="verifyCode()">Enviar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

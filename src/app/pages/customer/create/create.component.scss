@@ -19,3 +19,35 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+
+
+
+  .box-inputs {
+    background-color: #1d267d; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    
+    width: 70%;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10px;
+    /* Centrado horizontal y vertical usando grid */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas, una para cada elemento */
+    gap: 20px; /* Espacio entre los elementos */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mock-label {
+    margin-bottom: 10px; /* Espaciado entre la etiqueta y el input */
+}
+
+  .price-input,
+.geocoder,
+.geocoder2 {
+    /* Estilos para los contenedores internos */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+}

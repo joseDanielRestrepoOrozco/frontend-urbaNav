@@ -1,0 +1,15 @@
+$background-image-path: "https://blog.gbsgroup.net/hubfs/Featured-image-Como-calcular-y-disminuir-los-impuestos-para-conductores-de-Uber-y-Lyft-1-1080x675-2.webp";
+
+.login-backround {
+  background: url($background-image-path) no-repeat center center;
+  background-size: cover;
+}
+
+.error-message {
+  font-size: 0.8em;
+  text-align: center;
+  width: 100%;
+  display: block;
+  color: rgb(255, 86, 86);
+  padding: 12px 10px 0 10px;
+}

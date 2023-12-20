@@ -1,0 +1,91 @@
+<div class="login-backround">
+    <div class="header py-7 py-lg-8">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-6">
+              <h1 class="text-white">Cambio de contraseña</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-5">
+                <div class="card-body px-lg-5 py-lg-5">
+                    <div class="text-center text-muted mb-4">
+                    <small>Ingrese su contraseña actual</small>
+                    </div>
+                    <form [formGroup]="formGroupValidator">
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Contraseña actual" type="password" formControlName="password">
+                            <div
+                                *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
+                                <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-muted mb-4">
+                            <small>Ingrese su nueva contraseña</small>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                            </div>
+                            <input id="password-input" class="form-control" placeholder="Nueva contraseña" type="password" formControlName="newPassword" (focus)="togglePasswordRequirementsVisibility()" (blur)="togglePasswordRequirementsVisibility()" (input)="checkPasswordRequirements()">
+                            <div class="input-group-append">
+                                <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
+                                  <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                </span>
+                              </div>
+                              <div *ngIf="showPasswordRequirements">
+                                <ul class="password-requirements">
+                                  <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8 caracteres</li>
+                                  <li><input type="checkbox" [disabled]="true" id="uppercase-checkbox"> Al menos una mayúscula</li>
+                                  <li><input type="checkbox" [disabled]="true" id="lowercase-checkbox"> Al menos una minúscula</li>
+                                  <li><input type="checkbox" [disabled]="true" id="number-checkbox"> Al menos un número</li>
+                                  <li><input type="checkbox" [disabled]="true" id="special-checkbox"> Al menos un carácter especial</li>
+                                </ul>
+                            </div>
+                            <div
+                                *ngIf="formGroupValidatorData.newPassword.errors && (formGroupValidatorData.newPassword.dirty || formGroupValidatorData.newPassword.touched)">
+                                <strong *ngIf="formGroupValidatorData.newPassword.errors.required" class="error-message" >Campo requerido</strong>
+                            </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="input-group input-group-alternative">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                                <div
+                                    *ngIf="formGroupValidatorData.confirmPassword.errors && (formGroupValidatorData.confirmPassword.dirty || formGroupValidatorData.confirmPassword.touched)">
+                                    <strong *ngIf="formGroupValidatorData.confirmPassword.errors.required" class="error-message" >Campo requerido</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary my-4" (click)="password2()">Cambiar</button>
+                        </div>
+                    </form>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Customer } from 'src/app/models/customer.model';
 import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import { RoleService } from 'src/app/services/role.service';
@@ -16,15 +17,17 @@ export class CreateCustomerComponent implements OnInit {
 
   theUser: User;
   formGroupValidator: FormGroup;
-  selectedRole: Role = { _id: '', name: '', description: '' }
-  passwordField: any = { type: 'password' };
+  selectedRole: Role = { _id: '', name: '', description: '' };
+  contactEmergency: Customer = {_id:'', contactEmergency:''};
+  thecustomer: Customer;
+  passwordField: any = { type: 'password' }; 
 
   constructor(private usersService: UserService,
     private router: Router,
     private roleService: RoleService,
-    private formBuilder: FormBuilder) {
-    this.theUser = { _id: "", name: "", surname: "", phone: "", birthdate: "2023-05-02", email: "", password: "", role: {} }
-  }
+    private formBuilder: FormBuilder) { 
+    this.theUser = {_id:"", name:"", surname: "", phone:"", birthdate:"2023-05-02", email:"",password:"", role: {}, customer:{}}
+}
 
   ngOnInit(): void {
     this.formBuilding();
@@ -35,15 +38,16 @@ export class CreateCustomerComponent implements OnInit {
     });
   }
 
-  formBuilding() {
-    this.formGroupValidator = this.formBuilder.group({
-      _id: [''],
-      name: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      birthdate: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+  formBuilding(){
+    this.formGroupValidator=this.formBuilder.group({
+      _id : [''],
+      name : ['',[Validators.required]],
+      surname : ['',[Validators.required]],
+      phone:['',[Validators.required]],
+      birthdate : ['',[Validators.required]],
+      email : ['',[Validators.required, Validators.email]],
+      password: ['',[Validators.required]],
+      contactEmergency: ['',[Validators.required]]
     });
   }
 
@@ -51,14 +55,15 @@ export class CreateCustomerComponent implements OnInit {
     return this.formGroupValidator.controls;
   }
 
-  userData(): User {
-    let theUser = new User();
-    theUser.name = this.formGroupValidatorData.name.value;
-    theUser.surname = this.formGroupValidatorData.surname.value;
-    theUser.phone = this.formGroupValidatorData.phone.value;
-    theUser.birthdate = this.formGroupValidatorData.birthdate.value;
-    theUser.email = this.formGroupValidatorData.email.value;
-    theUser.password = this.formGroupValidatorData.password.value;
+  userData() : User{
+    let theUser= new User();
+    theUser.name=this.formGroupValidatorData.name.value;
+    theUser.surname=this.formGroupValidatorData.surname.value;
+    theUser.phone=this.formGroupValidatorData.phone.value;
+    theUser.birthdate=this.formGroupValidatorData.birthdate.value;
+    theUser.email=this.formGroupValidatorData.email.value;
+    theUser.password=this.formGroupValidatorData.password.value;
+    theUser.customer.contactEmergency= this.formGroupValidatorData.contactEmergency.value;
     return theUser;
   }
 
@@ -139,7 +144,7 @@ export class CreateCustomerComponent implements OnInit {
         title: 'Registrado exitosamente',
         icon: 'success',
       })
-      this.router.navigate(["users/list"])
+      this.router.navigate(['login'])
     });
   }
 }
