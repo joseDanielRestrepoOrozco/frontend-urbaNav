@@ -17,14 +17,14 @@ export class CreateCustomerComponent implements OnInit {
   theUser: User;
   formGroupValidator: FormGroup;
   selectedRole: Role = { _id: '', name: '', description: '' }
-  passwordField: any = { type: 'password' }; 
+  passwordField: any = { type: 'password' };
 
   constructor(private usersService: UserService,
-    private router:Router,
+    private router: Router,
     private roleService: RoleService,
-    private formBuilder: FormBuilder) { 
-    this.theUser = {_id:"", name:"", surname: "", phone:"", birthdate:"2023-05-02", email:"",password:"", role: {}}
-}
+    private formBuilder: FormBuilder) {
+    this.theUser = { _id: "", name: "", surname: "", phone: "", birthdate: "2023-05-02", email: "", password: "", role: {} }
+  }
 
   ngOnInit(): void {
     this.formBuilding();
@@ -35,30 +35,30 @@ export class CreateCustomerComponent implements OnInit {
     });
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      _id : [''],
-      name : ['',[Validators.required]],
-      surname : ['',[Validators.required]],
-      phone:['',[Validators.required]],
-      birthdate : ['',[Validators.required]],
-      email : ['',[Validators.required, Validators.email]],
-      password: ['',[Validators.required]],
+  formBuilding() {
+    this.formGroupValidator = this.formBuilder.group({
+      _id: [''],
+      name: ['', [Validators.required]],
+      surname: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      birthdate: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 
-  get formGroupValidatorData(){
+  get formGroupValidatorData() {
     return this.formGroupValidator.controls;
   }
 
-  userData() : User{
-    let theUser= new User();
-    theUser.name=this.formGroupValidatorData.name.value;
-    theUser.surname=this.formGroupValidatorData.surname.value;
-    theUser.phone=this.formGroupValidatorData.phone.value;
-    theUser.birthdate=this.formGroupValidatorData.birthdate.value;
-    theUser.email=this.formGroupValidatorData.email.value;
-    theUser.password=this.formGroupValidatorData.password.value;
+  userData(): User {
+    let theUser = new User();
+    theUser.name = this.formGroupValidatorData.name.value;
+    theUser.surname = this.formGroupValidatorData.surname.value;
+    theUser.phone = this.formGroupValidatorData.phone.value;
+    theUser.birthdate = this.formGroupValidatorData.birthdate.value;
+    theUser.email = this.formGroupValidatorData.email.value;
+    theUser.password = this.formGroupValidatorData.password.value;
     return theUser;
   }
 
@@ -79,13 +79,13 @@ export class CreateCustomerComponent implements OnInit {
 
   checkPasswordRequirements() {
     const password = this.formGroupValidatorData.password.value;
-  
+
     this.updatePasswordValidity('length', password.length >= 8);
     this.updatePasswordValidity('uppercase', /[A-Z]/.test(password));
     this.updatePasswordValidity('lowercase', /[a-z]/.test(password));
     this.updatePasswordValidity('number', /\d/.test(password));
     this.updatePasswordValidity('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
-  
+
     // Actualiza el estado de los checkboxes
     this.updateCheckboxState('length', password.length >= 8);
     this.updateCheckboxState('uppercase', /[A-Z]/.test(password));
@@ -93,50 +93,50 @@ export class CreateCustomerComponent implements OnInit {
     this.updateCheckboxState('number', /\d/.test(password));
     this.updateCheckboxState('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
   }
-  
+
   updateCheckboxState(requirement: string, isValid: boolean) {
     const checkbox = document.getElementById(`${requirement}-checkbox`) as HTMLInputElement;
-  
+
     if (checkbox) {
       checkbox.checked = isValid;
     }
   }
-  
-  
+
+
   updatePasswordValidity(requirement: string, isValid: boolean) {
     const requirementsControl = this.formGroupValidator.controls['password'];
-  
+
     if (isValid) {
       const currentErrors = requirementsControl.errors ? { ...requirementsControl.errors } : {};
       delete currentErrors[requirement];
-  
+
       requirementsControl.setErrors(Object.keys(currentErrors).length === 0 ? null : currentErrors);
     } else {
       const currentErrors = requirementsControl.errors || {};
       requirementsControl.setErrors({ ...currentErrors, [requirement]: true });
     }
   }
-  
+
   isPasswordValid(requirement: string) {
     return !this.formGroupValidatorData.password.errors || !this.formGroupValidatorData.password.errors[requirement];
   }
-  
-  create(){
-    if(this.formGroupValidator.invalid){
+
+  create() {
+    if (this.formGroupValidator.invalid) {
       Swal.fire({
         title: 'Formulario Incorrecto',
         icon: 'error',
-        timer:3000
+        timer: 3000
       });
       return false;
     }
     this.theUser = this.userData();
     this.theUser.role = this.selectedRole;
-    
+
     console.log("Creando a " + JSON.stringify(this.theUser))
     this.usersService.create(this.theUser).subscribe((jsonResponse: any) => {
       Swal.fire({
-        title: 'Registrado exitosamente', 
+        title: 'Registrado exitosamente',
         icon: 'success',
       })
       this.router.navigate(["users/list"])

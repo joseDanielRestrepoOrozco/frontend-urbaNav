@@ -18,4 +18,8 @@ export class InicialComponent implements OnInit {
     this.router.navigate(["registration/create-customer"])
   }
 
+  driverSignIn(){
+    this.router.navigate(["registration/create-driver"])
+  }
+
 }

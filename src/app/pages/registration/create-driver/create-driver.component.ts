@@ -1,48 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { RoleService } from 'src/app/services/role.service';
+import { DriverService } from 'src/app/services/driver.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-driver',
+  templateUrl: './create-driver.component.html',
+  styleUrls: ['./create-driver.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateDriverComponent implements OnInit {
 
-  theUser: User;
-  creationMode: boolean;
+  driver: User;
   formGroupValidator: FormGroup;
   passwordField: any = { type: 'password' };
 
-  constructor(private usersService: UserService,
-    private router: Router,
-    private rutaActiva: ActivatedRoute,
-    private formBuilder: FormBuilder) {
-    this.theUser = { _id: "", name: "", surname: "", phone: "", birthdate: "2023-05-02", email: "", password: "" }
-    this.creationMode = true;
+
+  constructor(private driverService: DriverService, private router: Router, private roleService: RoleService, private formBuilder: FormBuilder) {
+    this.driver = {
+      name: null,
+      surname: null,
+      phone: null,
+      email: null,
+      birthdate: null,
+      password: null,
+      vehicle_id: null,
+      is_available: false
+    }
   }
 
   ngOnInit(): void {
     this.formBuilding();
-    if (this.rutaActiva.snapshot.params.id) {
-      this.creationMode = false;
-      this.show(this.rutaActiva.snapshot.params.id)
-    }
+    // this.roleService.list().subscribe((roles: Role[]) => {
+    //   if (roles.length > 0) {
+    //     this.selectedRole = roles[1];
+    //   }
+    // roles.forEach((role) => {
+    //   if (role.name === "CONDUCTOR") {
+    //     this.selectedRole = role
+    //   }
+    // })
+    //   console.log(this.selectedRole);
+    // });
   }
 
   formBuilding() {
     this.formGroupValidator = this.formBuilder.group({
-      _id: [''],
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       phone: ['', [Validators.required]],
-      birthdate: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      birthdate: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      // role: ['',[Validators.required]]
+      vehicle_id: ['', [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -50,35 +62,38 @@ export class CreateComponent implements OnInit {
     return this.formGroupValidator.controls;
   }
 
-  userData(): User {
-    let theUser = new User();
-    theUser.name = this.formGroupValidatorData.name.value;
-    theUser.surname = this.formGroupValidatorData.surname.value;
-    theUser.phone = this.formGroupValidatorData.phone.value;
-    theUser.birthdate = this.formGroupValidatorData.birthdate.value;
-    theUser.email = this.formGroupValidatorData.email.value;
-    theUser.password = this.formGroupValidatorData.password.value;
-    // theUser.role=this.formGroupValidatorData.role.value;
-    return theUser;
-  }
-
-  show(id: number) {
-    this.usersService.show(id).subscribe((jsonResponse: any) => {
-      this.theUser = jsonResponse
-      // this.theUser.birthdate=this.transformatDate(this.theUser.birthdate)
-
-      this.formGroupValidator.patchValue({
-        _id: this.theUser._id,
-        name: this.theUser.name,
-        surname: this.theUser.surname,
-        phone: this.theUser.phone,
-        birthdate: this.theUser.birthdate,
-        email: this.theUser.email,
-        password: this.theUser.password
+  create() {
+    if (this.formGroupValidator.invalid) {
+      Swal.fire({
+        title: 'Formulario Incorrecto',
+        icon: 'error',
+        timer: 3000
       });
+      return false;
+    }
+    this.driver = this.driverData();
+    this.driverService.create(this.driver).subscribe((response: any) => {
+      Swal.fire({
+        title: 'Te has registrado!',
+        icon: 'success',
+      })
+      this.router.navigate(["dashboard"])
     });
+
   }
 
+  driverData(): User {
+    let driver = new User();
+    driver.name = this.formGroupValidatorData.name.value;
+    driver.surname = this.formGroupValidatorData.surname.value;
+    driver.phone = this.formGroupValidatorData.phone.value;
+    driver.email = this.formGroupValidatorData.email.value;
+    driver.birthdate = this.formGroupValidatorData.birthdate.value;
+    driver.password = this.formGroupValidatorData.password.value;
+    driver.vehicle_id = this.formGroupValidatorData.vehicle_id.value;
+    driver.is_available = false
+    return driver;
+  }
   showPasswordRequirements = false;
 
   togglePasswordRequirementsVisibility() {
@@ -138,41 +153,5 @@ export class CreateComponent implements OnInit {
     return !this.formGroupValidatorData.password.errors || !this.formGroupValidatorData.password.errors[requirement];
   }
 
-  create() {
-
-    if (this.formGroupValidator.invalid) {
-      Swal.fire({
-        title: 'Formulario Incorrecto',
-        icon: 'error',
-        timer: 3000
-      });
-      return false;
-    }
-    this.theUser = this.userData();
-
-    console.log("Creando a " + JSON.stringify(this.theUser))
-    this.usersService.create(this.theUser).subscribe((jsonResponse: any) => {
-      Swal.fire({
-        title: 'Creado',
-        icon: 'success',
-      })
-      this.router.navigate(["users/list"])
-    });
-  }
-
-  update() {
-    this.usersService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
-      Swal.fire({
-        title: 'Actualizando',
-        icon: 'success',
-      })
-      this.router.navigate(["users/list"])
-    });
-  }
-
-  // transformatDate(theDate: string): string {
-  //   const theDateObject = new Date(theDate);
-  //   return `${theDateObject.getFullYear()}-${theDateObject.getMonth() + 1}-${theDateObject.getDate()}`;
-  // }
 
 }
