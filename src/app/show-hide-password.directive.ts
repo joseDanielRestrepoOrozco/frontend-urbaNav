@@ -7,7 +7,7 @@ export class ShowHidePasswordDirective {
 
   private type = 'password';
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   @HostListener('click')
   onClick() {

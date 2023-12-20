@@ -26,24 +26,12 @@ export class CreateDriverComponent implements OnInit {
       email: null,
       birthdate: null,
       password: null,
-      vehicle_id: null,
-      is_available: false
+      driver: { vehicle_id: null, is_available: false }
     }
   }
 
   ngOnInit(): void {
     this.formBuilding();
-    // this.roleService.list().subscribe((roles: Role[]) => {
-    //   if (roles.length > 0) {
-    //     this.selectedRole = roles[1];
-    //   }
-    // roles.forEach((role) => {
-    //   if (role.name === "CONDUCTOR") {
-    //     this.selectedRole = role
-    //   }
-    // })
-    //   console.log(this.selectedRole);
-    // });
   }
 
   formBuilding() {
@@ -77,7 +65,7 @@ export class CreateDriverComponent implements OnInit {
         title: 'Te has registrado!',
         icon: 'success',
       })
-      this.router.navigate(["dashboard"])
+      this.router.navigate(["login"])
     });
 
   }
@@ -90,8 +78,8 @@ export class CreateDriverComponent implements OnInit {
     driver.email = this.formGroupValidatorData.email.value;
     driver.birthdate = this.formGroupValidatorData.birthdate.value;
     driver.password = this.formGroupValidatorData.password.value;
-    driver.vehicle_id = this.formGroupValidatorData.vehicle_id.value;
-    driver.is_available = false
+    driver.driver.vehicle_id = this.formGroupValidatorData.vehicle_id.value;
+    driver.driver.is_available = false
     return driver;
   }
   showPasswordRequirements = false;

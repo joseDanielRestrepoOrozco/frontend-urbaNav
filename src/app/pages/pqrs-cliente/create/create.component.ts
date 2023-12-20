@@ -16,43 +16,43 @@ export class CreateComponent implements OnInit {
   formGroupValidator: FormGroup;
 
   constructor(private pqrsService: PqrsService,
-    private router:Router,
-    private formBuilder: FormBuilder ) {
-    this.thePqrs = {_id:"", type:"", description: "", date:"2023-05-02"}
-}
+    private router: Router,
+    private formBuilder: FormBuilder) {
+    this.thePqrs = { _id: "", type: "", description: "", date: "2023-05-02" }
+  }
 
   ngOnInit(): void {
     this.formBuilding();
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      _id : [''],
-      type : ['',[Validators.required]],
-      description : ['',[Validators.required]],
-      date : ['',[Validators.required]],
+  formBuilding() {
+    this.formGroupValidator = this.formBuilder.group({
+      _id: [''],
+      type: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      date: ['', [Validators.required]],
     });
   }
 
-  pqrsData() : Pqrs{
-    let thePqrs= new Pqrs();
-    thePqrs.type=this.formGroupValidatorData.type.value;
-    thePqrs.description=this.formGroupValidatorData.description.value;
-    thePqrs.date=this.formGroupValidatorData.date.value;
+  pqrsData(): Pqrs {
+    let thePqrs = new Pqrs();
+    thePqrs.type = this.formGroupValidatorData.type.value;
+    thePqrs.description = this.formGroupValidatorData.description.value;
+    thePqrs.date = this.formGroupValidatorData.date.value;
     return thePqrs;
   }
 
-  get formGroupValidatorData(){
+  get formGroupValidatorData() {
     return this.formGroupValidator.controls;
   }
 
-  create(){
-    
-    if(this.formGroupValidator.invalid){
+  create() {
+
+    if (this.formGroupValidator.invalid) {
       Swal.fire({
         title: 'Formulario Incorrecto',
         icon: 'error',
-        timer:3000
+        timer: 3000
       });
       return false;
     }
@@ -66,7 +66,7 @@ export class CreateComponent implements OnInit {
     console.log("Creando a " + JSON.stringify(this.thePqrs))
     this.pqrsService.create(this.thePqrs).subscribe((jsonResponse: any) => {
       Swal.fire({
-        title: 'Enviado', 
+        title: 'Enviado',
         icon: 'success',
       })
       this.router.navigate(["dashboard"])

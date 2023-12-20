@@ -18,7 +18,7 @@ export class CodeVerificationComponent implements OnInit {
   userEmail: string = ''
 
   constructor(private router: Router,
-              private securityService: SecurityService) {}
+    private securityService: SecurityService) { }
 
   ngOnInit(): void {
     // Recupera el correo electrónico del local storage
@@ -62,9 +62,9 @@ export class CodeVerificationComponent implements OnInit {
   }
 
   verifyCode() {
-    const code = this.digit1.nativeElement.value + this.digit2.nativeElement.value + 
-                 this.digit3.nativeElement.value + this.digit4.nativeElement.value;
-  
+    const code = this.digit1.nativeElement.value + this.digit2.nativeElement.value +
+      this.digit3.nativeElement.value + this.digit4.nativeElement.value;
+
     this.securityService.verifyCode(this.userEmail, parseInt(code)).subscribe({
       next: (isValid) => {
         if (isValid) {
@@ -74,7 +74,7 @@ export class CodeVerificationComponent implements OnInit {
             title: 'Código incorrecto',
             text: 'Verifica tu bandeja de correo el código que te enviamos',
             icon: 'error',
-            timer: 5000 
+            timer: 5000
           });
         }
       },
@@ -83,12 +83,12 @@ export class CodeVerificationComponent implements OnInit {
           title: 'Error en la verificación',
           text: error,
           icon: 'error',
-          timer: 5000 
+          timer: 5000
         });
       }
     });
   }
-  
+
   login2() {
     const userEmail = localStorage.getItem('userEmail') || '';
     const userPassword = localStorage.getItem('userPassword') || '';
@@ -101,7 +101,7 @@ export class CodeVerificationComponent implements OnInit {
     let theUser = new User();
     theUser.email = userEmail;
     theUser.password = userPassword;
-    
+
     this.securityService.login2(theUser).subscribe({
       next: (token) => {
         this.getUserFromToken(token); // Obtener detalles del usuario y guardar en el local storage
@@ -111,7 +111,7 @@ export class CodeVerificationComponent implements OnInit {
           title: 'Error al crear el token en el login2',
           text: error,
           icon: 'error',
-          timer: 5000 
+          timer: 5000
         });
       }
     });
@@ -136,6 +136,6 @@ export class CodeVerificationComponent implements OnInit {
       }
     });
   }
-  
+
 
 }

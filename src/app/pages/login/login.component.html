@@ -42,8 +42,10 @@
                     <input class="form-control" placeholder="Correo electrónico" type="email" formControlName="email">
                     <div
                       *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)">
-                      <strong *ngIf="formGroupValidatorData.email.errors.required" class="error-message" >Campo requerido</strong>
-                      <strong *ngIf="formGroupValidatorData.email.errors.email" class="error-message" >Este campo debe ser un email</strong>
+                      <strong *ngIf="formGroupValidatorData.email.errors.required" class="error-message">Campo
+                        requerido</strong>
+                      <strong *ngIf="formGroupValidatorData.email.errors.email" class="error-message">Este campo debe
+                        ser un email</strong>
                     </div>
                   </div>
                 </div>
@@ -55,7 +57,8 @@
                     <input class="form-control" placeholder="Contraseña" type="password" formControlName="password">
                     <div
                       *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
-                      <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
+                      <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message">Campo
+                        requerido</strong>
                     </div>
                   </div>
                 </div>
@@ -76,15 +79,15 @@
                     <small (click)="registrarse()">Crear cuenta</small>
                   </a>
                 </div>
-                
+
               </form>
             </div>
           </div>
         </div>
 
-  <!-- fin caja de login -->
+        <!-- fin caja de login -->
 
       </div>
     </div>
-</div>
+  </div>
 </div>

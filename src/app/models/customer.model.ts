@@ -1,4 +1,4 @@
 export class Customer {
-    _id?:string;
-    contactEmergency?:string;
+    _id?: string;
+    contactEmergency?: string;
 }

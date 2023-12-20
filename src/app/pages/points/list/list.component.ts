@@ -44,7 +44,7 @@ export class ListComponent implements OnInit {
       confirmButtonText: 'Sí, eliminar',
       cancelButtonText: 'No, cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {   
+      if (result.isConfirmed) {
         this.pointService.delete(id).subscribe((data) => {
           Swal.fire(
             'Eliminado!',
