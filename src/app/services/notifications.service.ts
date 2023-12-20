@@ -20,4 +20,10 @@ export class NotificationsService {
     delete newNotification.customer;
     return this.http.post(`${environment.url_ms_notifications}/send_email`, newNotification);
   }
+
+  sendBill(newNotification: any){
+    delete newNotification.id;
+    delete newNotification.customer;
+    return this.http.post(`${environment.url_ms_notifications}/send_bill`, newNotification);
+  }
 }

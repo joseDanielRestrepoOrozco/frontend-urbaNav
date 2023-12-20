@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Vehicle } from 'src/app/models/vehicle.model';
+import { BillService } from 'src/app/services/bill.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import Swal from 'sweetalert2';
 
@@ -14,6 +16,8 @@ export class ListComponent implements OnInit {
   vehicles:Vehicle[]
 
   constructor(private vehiclesService: VehicleService,
+             private billsService: BillService,
+             private notificationsService: NotificationsService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -55,6 +59,20 @@ export class ListComponent implements OnInit {
       }
     })
   
+  }
+
+  factura(){
+    this.billsService.show(1).subscribe((data) =>{
+      let sesion = JSON.parse(localStorage.getItem("session"))
+      let precio:number = data.price
+      this.notificationsService.sendBill({
+        "email": sesion.email,
+        "subject": "Factura",
+        "body": `${precio}`
+      }).subscribe((dat)=>{
+        console.log(dat)
+      })
+    })
   }
 
 }
