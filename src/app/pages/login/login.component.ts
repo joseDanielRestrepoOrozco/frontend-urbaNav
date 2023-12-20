@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.router.navigate(["cambio-contraseña/inicial"])
   }
 
+  registrarse(){
+    this.router.navigate(["registration/inicial"])
+  }
+
   formBuilding(){
     this.formGroupValidator=this.formBuilder.group({
       email : ['', [Validators.required, Validators.email]],

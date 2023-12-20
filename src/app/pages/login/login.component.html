@@ -39,7 +39,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" formControlName="email">
+                    <input class="form-control" placeholder="Correo electrónico" type="email" formControlName="email">
                     <div
                       *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)">
                       <strong *ngIf="formGroupValidatorData.email.errors.required" class="error-message" >Campo requerido</strong>
@@ -52,7 +52,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" formControlName="password">
+                    <input class="form-control" placeholder="Contraseña" type="password" formControlName="password">
                     <div
                       *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
                       <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
@@ -73,7 +73,7 @@
                     <small (click)="cambio()">¿Olvidaste tu contraseña?</small>
                   </a>
                   <a class="forgot-password-link">
-                    <small>Crear cuenta</small>
+                    <small (click)="registrarse()">Crear cuenta</small>
                   </a>
                 </div>
                 
