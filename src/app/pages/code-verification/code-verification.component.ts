@@ -123,7 +123,10 @@ export class CodeVerificationComponent implements OnInit {
         let theUser: User = {
           "_id": dataUser["_id"],
           "name": dataUser["name"],
+          "surname": dataUser["surname"],
           "email": dataUser["email"],
+          "birthdate": dataUser["birthdate"],
+          "phone": dataUser["phone"],
           "token": token,
           "role": dataUser["role"],
         }

@@ -49,4 +49,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["/dashboard"])
   }
 
+  sessionExist() {
+    return this.securityService.sessionExists()
+  }
 }

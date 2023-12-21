@@ -28,7 +28,7 @@
       />
     </a>
     <!-- User -->
-    <ul class="nav align-items-center d-md-none">
+    <ul *ngIf="sessionExist()" class="nav align-items-center d-md-none">
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
           <i class="ni ni-bell-55"></i>

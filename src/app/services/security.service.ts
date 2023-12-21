@@ -161,4 +161,7 @@ export class SecurityService {
     return this.http.get<User>(`${environment.url_ms_security}/api/public/security/token-validation`, { headers });
   }
 
+  verifyPassword(user_id: string, password: string):Observable<boolean>{
+    return this.http.get<boolean>(`${environment.url_ms_security}/api/public/security/isUser/user/${user_id}/password/${password}`);
+  }
 }
