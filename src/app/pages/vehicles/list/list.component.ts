@@ -13,29 +13,29 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  vehicles:Vehicle[]
+  vehicles: Vehicle[]
 
   constructor(private vehiclesService: VehicleService,
-             private billsService: BillService,
-             private notificationsService: NotificationsService,
-              private router: Router) { }
+    private billsService: BillService,
+    private notificationsService: NotificationsService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.vehiclesService.list().subscribe((jsonResponse:any) => {
-      this.vehicles = jsonResponse.data; 
+    this.vehiclesService.list().subscribe((jsonResponse: any) => {
+      this.vehicles = jsonResponse.data;
     });
   }
 
-  create(){
+  create() {
     this.router.navigate(["vehicles/create"])
   }
 
-  edit(id:number){
+  edit(id: number) {
     console.log("Editando a " + id)
     this.router.navigate(["vehicles/update/" + id])
   }
 
-  delete(id:number){
+  delete(id: number) {
     console.log("Eliminando a " + id)
     Swal.fire({
       title: 'Eliminar',
@@ -49,27 +49,27 @@ export class ListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.vehiclesService.delete(id).subscribe(data => {
-            Swal.fire(
-              'Eliminado!',
-              'Eliminación culminada exitosamente',
-              'success'
-            )
-            this.ngOnInit();
-          });
+          Swal.fire(
+            'Eliminado!',
+            'Eliminación culminada exitosamente',
+            'success'
+          )
+          this.ngOnInit();
+        });
       }
     })
-  
+
   }
 
-  factura(){
-    this.billsService.show(1).subscribe((data) =>{
+  factura() {
+    this.billsService.show(1).subscribe((data) => {
       let sesion = JSON.parse(localStorage.getItem("session"))
-      let precio:number = data.price
+      let precio: number = data.price
       this.notificationsService.sendBill({
         "email": sesion.email,
         "subject": "Factura",
         "body": `${precio}`
-      }).subscribe((dat)=>{
+      }).subscribe((dat) => {
         console.log(dat)
       })
     })

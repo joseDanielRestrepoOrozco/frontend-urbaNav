@@ -7,33 +7,58 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <!-- <h3 *ngIf="creationMode" class="mb-0">Crear Película</h3>
-          <h3 *ngIf="!creationMode" class="mb-0">Editar Película</h3> -->
-          <h3 class="mb-0">Crear Punto</h3>
+          <h3 *ngIf="creationMode" class="mb-0">Crear Punto</h3>
+          <h3 *ngIf="!creationMode" class="mb-0">Editar Punto</h3>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="formGroupValidator">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-date-release">Nombre</label>
-                    <input type="text" class="form-control form-control-alternative" placeholder="Nombre">
+                    <input type="text" class="form-control form-control-alternative" formControlName="name"
+                      placeholder="Nombre">
+                    <div
+                      *ngIf="formGroupValidatorData.name.errors && (formGroupValidatorData.name.dirty || formGroupValidatorData.name.touched)">
+                      <strong class="text-sm text-red" *ngIf="formGroupValidatorData.name.errors.required">**Campo
+                        requerido**</strong>
+                    </div>
                   </div>
                 </div>
-                <!-- <div class="col-lg-6">
+                <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-date-release">Coordenadas</label>
-                    <input type="number" class="form-control form-control-alternative" placeholder="Latitud, Longitud">
+                    <label class="form-control-label" for="input-date-release">Latitud</label>
+                    <input type="number" class="form-control form-control-alternative" placeholder="Latitud"
+                      formControlName="latitude">
+                    <div
+                      *ngIf="formGroupValidatorData.latitude.errors && (formGroupValidatorData.latitude.dirty || formGroupValidatorData.latitude.touched)">
+                      <strong class="text-sm text-red" *ngIf="formGroupValidatorData.latitude.errors.required">**Campo
+                        requerido**</strong>
+                    </div>
                   </div>
-                </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-date-release">Longitud</label>
+                    <input type="number" class="form-control form-control-alternative" placeholder="Longitud"
+                      formControlName="longitude">
+                    <div
+                      *ngIf="formGroupValidatorData.longitude.errors && (formGroupValidatorData.longitude.dirty || formGroupValidatorData.longitude.touched)">
+                      <strong class="text-sm text-red" *ngIf="formGroupValidatorData.longitude.errors.required">**Campo
+                        requerido**</strong>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="button" class="btn btn-info btn-block">Crear</button>
-                <!-- <button *ngIf="creationMode" type="button" class="btn btn-info btn-block"
+                <!-- <button type="button" class="btn btn-info btn-block">Crear</button> -->
+                <button *ngIf="creationMode" type="button" class="btn btn-info btn-block"
                   (click)="create()">Crear</button>
                 <button *ngIf="!creationMode" type="button" class="btn btn-info btn-block"
-                  (click)="update()">Actualizar</button> -->
+                  (click)="update()">Actualizar</button>
               </div>
             </div>
           </form>

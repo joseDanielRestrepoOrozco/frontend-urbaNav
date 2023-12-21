@@ -1,53 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Customer } from 'src/app/models/customer.model';
-import { Role } from 'src/app/models/role.model';
 import { User } from 'src/app/models/user.model';
 import { RoleService } from 'src/app/services/role.service';
-import { UserService } from 'src/app/services/user.service';
+import { DriverService } from 'src/app/services/driver.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-create-customer',
-  templateUrl: './create-customer.component.html',
-  styleUrls: ['./create-customer.component.scss']
+  selector: 'app-create-driver',
+  templateUrl: './create-driver.component.html',
+  styleUrls: ['./create-driver.component.scss']
 })
-export class CreateCustomerComponent implements OnInit {
+export class CreateDriverComponent implements OnInit {
 
-  theUser: User;
+  driver: User;
   formGroupValidator: FormGroup;
-  selectedRole: Role = { _id: '', name: '', description: '' };
-  contact_emergency: Customer = {_id:'', contact_emergency:''};
-  thecustomer: Customer;
-  passwordField: any = { type: 'password' }; 
+  passwordField: any = { type: 'password' };
 
-  constructor(private usersService: UserService,
-    private router: Router,
-    private roleService: RoleService,
-    private formBuilder: FormBuilder) { 
-    this.theUser = {_id:"", name:"", surname: "", phone:"", birthdate:"2023-05-02", email:"",password:"", role: {}, customer:{}}
-}
+
+  constructor(private driverService: DriverService, private router: Router, private roleService: RoleService, private formBuilder: FormBuilder) {
+    this.driver = {
+      name: null,
+      surname: null,
+      phone: null,
+      email: null,
+      birthdate: null,
+      password: null,
+      driver: { vehicle_id: null, is_available: false }
+    }
+  }
 
   ngOnInit(): void {
     this.formBuilding();
-    this.roleService.list().subscribe((roles: Role[]) => {
-      if (roles.length > 0) {
-        this.selectedRole = roles[0];
-      }
-    });
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      _id : [''],
-      name : ['',[Validators.required]],
-      surname : ['',[Validators.required]],
-      phone:['',[Validators.required]],
-      birthdate : ['',[Validators.required]],
-      email : ['',[Validators.required, Validators.email]],
-      password: ['',[Validators.required]],
-      contact_emergency: ['',[Validators.required]]
+  formBuilding() {
+    this.formGroupValidator = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      surname: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      birthdate: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      vehicle_id: ['', [Validators.required, Validators.min(1)]]
     });
   }
 
@@ -55,18 +50,38 @@ export class CreateCustomerComponent implements OnInit {
     return this.formGroupValidator.controls;
   }
 
-  userData() : User{
-    let theUser= new User();
-    theUser.name=this.formGroupValidatorData.name.value;
-    theUser.surname=this.formGroupValidatorData.surname.value;
-    theUser.phone=this.formGroupValidatorData.phone.value;
-    theUser.birthdate=this.formGroupValidatorData.birthdate.value;
-    theUser.email=this.formGroupValidatorData.email.value;
-    theUser.password=this.formGroupValidatorData.password.value;
-    theUser.customer.contact_emergency= this.formGroupValidatorData.contact_emergency.value;
-    return theUser;
+  create() {
+    if (this.formGroupValidator.invalid) {
+      Swal.fire({
+        title: 'Formulario Incorrecto',
+        icon: 'error',
+        timer: 3000
+      });
+      return false;
+    }
+    this.driver = this.driverData();
+    this.driverService.create(this.driver).subscribe((response: any) => {
+      Swal.fire({
+        title: 'Te has registrado!',
+        icon: 'success',
+      })
+      this.router.navigate(["login"])
+    });
+
   }
 
+  driverData(): User {
+    let driver = new User();
+    driver.name = this.formGroupValidatorData.name.value;
+    driver.surname = this.formGroupValidatorData.surname.value;
+    driver.phone = this.formGroupValidatorData.phone.value;
+    driver.email = this.formGroupValidatorData.email.value;
+    driver.birthdate = this.formGroupValidatorData.birthdate.value;
+    driver.password = this.formGroupValidatorData.password.value;
+    driver.driver.vehicle_id = this.formGroupValidatorData.vehicle_id.value;
+    driver.driver.is_available = false
+    return driver;
+  }
   showPasswordRequirements = false;
 
   togglePasswordRequirementsVisibility() {
@@ -126,25 +141,5 @@ export class CreateCustomerComponent implements OnInit {
     return !this.formGroupValidatorData.password.errors || !this.formGroupValidatorData.password.errors[requirement];
   }
 
-  create() {
-    if (this.formGroupValidator.invalid) {
-      Swal.fire({
-        title: 'Formulario Incorrecto',
-        icon: 'error',
-        timer: 3000
-      });
-      return false;
-    }
-    this.theUser = this.userData();
-    this.theUser.role = this.selectedRole;
 
-    console.log("Creando a " + JSON.stringify(this.theUser))
-    this.usersService.create(this.theUser).subscribe((jsonResponse: any) => {
-      Swal.fire({
-        title: 'Registrado exitosamente',
-        icon: 'success',
-      })
-      this.router.navigate(['login'])
-    });
-  }
 }

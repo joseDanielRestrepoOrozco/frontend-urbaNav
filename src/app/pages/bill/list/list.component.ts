@@ -11,36 +11,36 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  bills:Bill[]
+  bills: Bill[]
 
   constructor(private billService: BillService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.billService.list().subscribe((jsonResponse:any) => {
-      this.bills = jsonResponse.data; 
+    this.billService.list().subscribe((jsonResponse: any) => {
+      this.bills = jsonResponse.data;
       this.bills.forEach(bill => {
-        bill.date=this.formatearFecha(bill.date)
+        bill.date = this.formatearFecha(bill.date)
         console.log(bill)
       });
-      
-      console.log("Esto es bill: ",this.bills)
+
+      console.log("Esto es bill: ", this.bills)
     });
   }
 
-  create(){
+  create() {
     console.log("Hola")
     this.router.navigate(['bill/create'])
   }
 
-  edit(id:number){
+  edit(id: number) {
     console.log("Editando a " + id)
     this.router.navigate(["bill/update/" + id])
   }
 
 
   formatearFecha(fechaString: string): string {
-    let fecha:string = fechaString.replace('T', ' ').replace('Z', '');
+    let fecha: string = fechaString.replace('T', ' ').replace('Z', '');
     console.log(fecha)
     return fecha
   }

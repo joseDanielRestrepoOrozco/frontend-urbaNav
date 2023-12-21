@@ -15,26 +15,26 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   formGroupValidator: FormGroup;
   constructor(private formBuilder: FormBuilder,
-              private router:Router,
-              private securityService:SecurityService,
-              private notificationsService:NotificationsService) {}
+    private router: Router,
+    private securityService: SecurityService,
+    private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.formBuilding()
   }
 
-  cambio(){
+  cambio() {
     this.router.navigate(["cambio-contraseña/inicial"])
   }
 
-  registrarse(){
+  registrarse() {
     this.router.navigate(["registration/inicial"])
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      email : ['', [Validators.required, Validators.email]],
-      password : ['', [Validators.required, Validators.minLength(2)]],
+  formBuilding() {
+    this.formGroupValidator = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
 
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
       return;
     }
-  
+
     let theUser = this.userData();
     this.securityService.login(theUser).subscribe({
       next: (data) => {
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           // Almacena el correo electrónico y la contraseña en el local storage
           localStorage.setItem('userEmail', theUser.email);
           localStorage.setItem('userPassword', theUser.password);
-  
+
           // Obtener el código de sesión
           this.securityService.getSessionCode(theUser.email).subscribe({
             next: (sessionCode) => {
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     title: 'Error al enviar correo',
                     text: error.message,
                     icon: 'error',
-                    timer: 5000 
+                    timer: 5000
                   });
                 }
               });
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 title: 'Error al obtener código de sesión',
                 text: error.message,
                 icon: 'error',
-                timer: 5000 
+                timer: 5000
               });
             }
           });
@@ -95,12 +95,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           title: 'Error',
           text: 'Usuario o contraseña inválido',
           icon: 'error',
-          timer: 5000 
+          timer: 5000
         });
       }
     });
   }
-  
+
   // getUserFromToken(token: string) {
   //   console.log(token)
   //   this.securityService.getUserFromToken(token).subscribe({
@@ -121,14 +121,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  get formGroupValidatorData(){
+  get formGroupValidatorData() {
     return this.formGroupValidator.controls;
   }
 
-  userData() : User{
-    let theUser= new User();
-    theUser.email=this.formGroupValidatorData.email.value;
-    theUser.password=this.formGroupValidatorData.password.value;
+  userData(): User {
+    let theUser = new User();
+    theUser.email = this.formGroupValidatorData.email.value;
+    theUser.password = this.formGroupValidatorData.password.value;
     return theUser;
   }
 

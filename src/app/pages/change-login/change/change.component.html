@@ -1,15 +1,15 @@
 <div class="login-backround">
-    <div class="header py-7 py-lg-8">
-      <div class="container">
-        <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">Cambio de contraseña</h1>
-            </div>
+  <div class="header py-7 py-lg-8">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <h1 class="text-white">Cambio de contraseña</h1>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
@@ -51,7 +51,7 @@
                                 <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
                                   <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
                                 </span>
-                            </div>
+                              </div>
                               <div *ngIf="showPasswordRequirements">
                                 <ul class="password-requirements">
                                   <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8 caracteres</li>
@@ -96,6 +96,3 @@
         </div>
     </div>
 </div>
-
-
-

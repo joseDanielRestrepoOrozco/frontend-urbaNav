@@ -15,11 +15,11 @@ export class ChangeComponent implements OnInit {
   userId: string = ''
   userEmail: string = ''
   formGroupValidator: FormGroup;
-  passwordField: any = { type: 'password' }; 
+  passwordField: any = { type: 'password' };
 
   constructor(private formBuilder: FormBuilder,
-              private router:Router,
-              private securityService:SecurityService) { }
+    private router: Router,
+    private securityService: SecurityService) { }
 
   ngOnInit(): void {
     this.formBuilding()
@@ -27,23 +27,23 @@ export class ChangeComponent implements OnInit {
     this.userEmail = localStorage.getItem('userEmail') || '';
   }
 
-  formBuilding(){
-    this.formGroupValidator=this.formBuilder.group({
-      password : ['', [Validators.required, Validators.minLength(2)]],
-      newPassword : ['', [Validators.required, Validators.minLength(2)]],
-      confirmPassword : ['', [Validators.required, Validators.minLength(2)]],
+  formBuilding() {
+    this.formGroupValidator = this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(2)]],
+      newPassword: ['', [Validators.required, Validators.minLength(2)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
 
-  get formGroupValidatorData(){
+  get formGroupValidatorData() {
     return this.formGroupValidator.controls;
   }
 
-  userData() : User{
-    let theUser= new User();
-    theUser.password=this.formGroupValidatorData.password.value;
-    theUser.password=this.formGroupValidatorData.newPassword.value;
-    theUser.password=this.formGroupValidatorData.confirmPassword.value;
+  userData(): User {
+    let theUser = new User();
+    theUser.password = this.formGroupValidatorData.password.value;
+    theUser.password = this.formGroupValidatorData.newPassword.value;
+    theUser.password = this.formGroupValidatorData.confirmPassword.value;
     return theUser;
   }
 
@@ -80,13 +80,13 @@ export class ChangeComponent implements OnInit {
 
   checkPasswordRequirements() {
     const password = this.formGroupValidatorData.newPassword.value;
-  
+
     this.updatePasswordValidity('length', password.length >= 8);
     this.updatePasswordValidity('uppercase', /[A-Z]/.test(password));
     this.updatePasswordValidity('lowercase', /[a-z]/.test(password));
     this.updatePasswordValidity('number', /\d/.test(password));
     this.updatePasswordValidity('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
-  
+
     // Actualiza el estado de los checkboxes
     this.updateCheckboxState('length', password.length >= 8);
     this.updateCheckboxState('uppercase', /[A-Z]/.test(password));
@@ -94,36 +94,36 @@ export class ChangeComponent implements OnInit {
     this.updateCheckboxState('number', /\d/.test(password));
     this.updateCheckboxState('special', /[!@#$%^&*(),.?":{}|<>]/.test(password));
   }
-  
+
   updateCheckboxState(requirement: string, isValid: boolean) {
     const checkbox = document.getElementById(`${requirement}-checkbox`) as HTMLInputElement;
-  
+
     if (checkbox) {
       checkbox.checked = isValid;
     }
   }
-  
-  
+
+
   updatePasswordValidity(requirement: string, isValid: boolean) {
     const requirementsControl = this.formGroupValidator.controls['password'];
-  
+
     if (isValid) {
       const currentErrors = requirementsControl.errors ? { ...requirementsControl.errors } : {};
       delete currentErrors[requirement];
-  
+
       requirementsControl.setErrors(Object.keys(currentErrors).length === 0 ? null : currentErrors);
     } else {
       const currentErrors = requirementsControl.errors || {};
       requirementsControl.setErrors({ ...currentErrors, [requirement]: true });
     }
   }
-  
+
   isPasswordValid(requirement: string) {
     return !this.formGroupValidatorData.newPassword.errors || !this.formGroupValidatorData.newPassword.errors[requirement];
   }
 
   password2() {
-    if(this.formGroupValidator.invalid) {
+    if (this.formGroupValidator.invalid) {
       Swal.fire({
         title: 'Formulario Incorrecto',
         icon: 'error',
@@ -134,7 +134,7 @@ export class ChangeComponent implements OnInit {
     const currentPassword = this.formGroupValidatorData.password.value;
     const newPassword = this.formGroupValidatorData.newPassword.value;
     const confirmPassword = this.formGroupValidatorData.confirmPassword.value;
-  
+
     this.securityService.password2(currentPassword, newPassword, confirmPassword).subscribe(
       (success:any) => {
         if (success.success) {
@@ -160,7 +160,7 @@ export class ChangeComponent implements OnInit {
           title: 'Error',
           text: 'errorsito',
           icon: 'error',
-          timer: 5000 
+          timer: 5000
         });
       }
     );

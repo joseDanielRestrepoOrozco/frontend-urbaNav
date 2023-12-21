@@ -11,27 +11,27 @@ import Swal from 'sweetalert2';
 })
 export class ListComponent implements OnInit {
 
-  ratings:Rating[]
+  ratings: Rating[]
 
   constructor(private ratingsService: RatingService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.ratingsService.list().subscribe((jsonResponse:any) => {
-      this.ratings = jsonResponse.data; 
+    this.ratingsService.list().subscribe((jsonResponse: any) => {
+      this.ratings = jsonResponse.data;
     });
   }
 
-  create(){
+  create() {
     this.router.navigate(["ratings/create"])
   }
 
-  edit(id:number){
+  edit(id: number) {
     console.log("Editando a " + id)
     this.router.navigate(["ratings/update/" + id])
   }
 
-  delete(id:number){
+  delete(id: number) {
     console.log("Eliminando a " + id)
     Swal.fire({
       title: 'Eliminar',
@@ -45,16 +45,16 @@ export class ListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.ratingsService.delete(id).subscribe(data => {
-            Swal.fire(
-              'Eliminado!',
-              'Eliminación culminada exitosamente',
-              'success'
-            )
-            this.ngOnInit();
-          });
+          Swal.fire(
+            'Eliminado!',
+            'Eliminación culminada exitosamente',
+            'success'
+          )
+          this.ngOnInit();
+        });
       }
     })
-  
+
   }
 
 }
