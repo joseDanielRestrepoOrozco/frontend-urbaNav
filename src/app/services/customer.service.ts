@@ -125,7 +125,7 @@ export class CustomerService {
       const route = data.geometry.coordinates;
       console.log(route)
       console.log(res)
-      this.map.addSource('route',{
+      this.map.addSource(`route${this.index}`,{
         type:'geojson',
         data:{
           type:'Feature',
@@ -138,9 +138,9 @@ export class CustomerService {
       })
 
       this.map.addLayer({
-        id:'route',
+        id:`route${this.index}`,
         type:'line',
-        source: 'route',
+        source: `route${this.index}`,
         layout:{
           'line-join': 'round',
           'line-cap': 'round'
@@ -150,14 +150,14 @@ export class CustomerService {
           'line-width': 5
         }
       })
-
+      ++ this.index
       this.wayPoints = route;
       this.map.fitBounds([route[0], route[route.length -1]],{
         padding: 50
       })
     })
 
-
+    
 
   }
 
@@ -180,7 +180,7 @@ export class CustomerService {
   const intervalId = setInterval(() => {
     if (index < wayPoints.length) {
       const point = wayPoints[index];
-      this.socket.emit('position_driver',{'session':session, 'route':point})
+      this.socket.emit('position_driver',{'session':session, 'route':point, 'tamano': wayPoints.length})
       console.log(point);
       this.addMarkerCustom(point,session);
       index++;

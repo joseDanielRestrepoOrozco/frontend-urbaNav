@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { CustomerService } from '../../../services/customer.service';
 import { Socket } from 'ngx-socket-io';
 import Swal from 'sweetalert2';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 
 @Component({
@@ -17,20 +19,11 @@ export class CreateComponent implements OnInit {
   modeInput = 'start'
   precio: number | null = null;
 
-  constructor(private customerService: CustomerService, private renderer2: Renderer2, private socket: Socket) { }
+  constructor(private customerService: CustomerService, private renderer2: Renderer2, private socket: Socket, private helpersService:HelpersService) { }
 
 
-  changeMode(mode: string): void {
-    this.modeInput = mode
-  }
 
-  prueba(): void {
-    this.customerService.addMarkerCustom([-75.4925698, 5.0569691],null);
-  }
 
-  seguir(): void {
-    //this.customerService.getRoute()
-  }
 
 
 
@@ -46,7 +39,7 @@ export class CreateComponent implements OnInit {
     
     console.log('conductor cercano',driver)
     console.log(driver.point)
-    this.socket.emit('position',{'driver': driver.user, 'session':session, 'precio':this.precio, 'route':[driver.point,this.wayPoints.end.center]})
+    this.socket.emit('position',{'driver': driver.user, 'duracion':driver.duracion,'distancia':driver.distancia,  'session':session, 'precio':this.precio, 'route':[driver.point,this.wayPoints.end.center]})
   } catch (error) {
       console.log('ERROR: NO funciona socket')
   }
@@ -94,42 +87,29 @@ export class CreateComponent implements OnInit {
       console.log(msg)
 
       let conductor= JSON.parse(msg['conductor'])
-
-      /*Swal.fire({
-        title: "Conductor Cercano",
-        icon: "info",
-        text: `${conductor['name']} te quiere llevar aceptas?`,
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No'
-      });*/
      
       this.customerService.addMarkerCustom(msg['point'],conductor);
     })
-
+    let index = 0
     this.socket.fromEvent('position_driver').subscribe((msg:any)=>{
       console.log(msg.session, msg.route)
       this.customerService.addMarkerCustom(msg.route,msg.session)
-      console.log(this.wayPoints.end.center[0].toFixed(4) === msg.route[0].toFixed(4), msg.route[0].toFixed(4),this.wayPoints.end.center[0].toFixed(4))
-      if(this.wayPoints.end.center[0].toFixed(3) === msg.route[0].toFixed(3)){
+      console.log(index, msg.tamano)
+      if(index === msg.tamano-1){
         Swal.fire({
           title: "Conductor Cercano",
           icon: "info",
-          text: `Termino el viaje princeso`,
+          text: `Termino el viaje da aceptar a este mensaje y pagaras con tu metodo de pago predeterminado`,
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Si',
-          cancelButtonText: 'No'
+          confirmButtonText: 'Aceptar',
         });
 
+        this.socket.emit('viaje',{})        
 
-        /*
-        aqui termina el viaje
-        */
       }
+      ++index
     })
 
   }

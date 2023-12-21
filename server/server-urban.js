@@ -15,6 +15,7 @@ const io = require('socket.io')(server,{
 io.on('connection',(socket)=>{
     socket.on('coords',(msg)=>{
        io.emit('coords',msg)
+       drivers.push(msg)
     })
     socket.emit('drivers',drivers)
     socket.on('position',(msg)=>{
@@ -22,6 +23,9 @@ io.on('connection',(socket)=>{
      })
      socket.on('position_driver',(msg)=>{
         io.emit('position_driver',msg)
+     })
+     socket.on('viaje',(msg)=>{
+        io.emit('viaje',msg)
      })
 })
 
