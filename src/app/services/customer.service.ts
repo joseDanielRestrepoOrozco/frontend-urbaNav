@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { Vehicle } from '../models/vehicle.model';
 import { Console } from 'console';
 import { Socket } from 'ngx-socket-io';
+import { Observable } from 'rxjs';
+import { Customer } from '../models/customer.model';
 
 
 
@@ -257,6 +259,10 @@ export class CustomerService {
    
 
 
+  }
+
+  getCustomerByUserId(userId: string): Observable<Customer> {
+    return this.httpClient.get<Customer>(`${environment.url_ms_urbannav}/customers/user/${userId}`);
   }
 
 

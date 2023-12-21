@@ -18,7 +18,7 @@ export class CreateCustomerComponent implements OnInit {
   theUser: User;
   formGroupValidator: FormGroup;
   selectedRole: Role = { _id: '', name: '', description: '' };
-  contactEmergency: Customer = {_id:'', contactEmergency:''};
+  contact_emergency: Customer = {_id:'', contact_emergency:''};
   thecustomer: Customer;
   passwordField: any = { type: 'password' }; 
 
@@ -47,7 +47,7 @@ export class CreateCustomerComponent implements OnInit {
       birthdate : ['',[Validators.required]],
       email : ['',[Validators.required, Validators.email]],
       password: ['',[Validators.required]],
-      contactEmergency: ['',[Validators.required]]
+      contact_emergency: ['',[Validators.required]]
     });
   }
 
@@ -63,7 +63,7 @@ export class CreateCustomerComponent implements OnInit {
     theUser.birthdate=this.formGroupValidatorData.birthdate.value;
     theUser.email=this.formGroupValidatorData.email.value;
     theUser.password=this.formGroupValidatorData.password.value;
-    theUser.customer.contactEmergency= this.formGroupValidatorData.contactEmergency.value;
+    theUser.customer.contact_emergency= this.formGroupValidatorData.contact_emergency.value;
     return theUser;
   }
 

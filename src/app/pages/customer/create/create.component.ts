@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { Socket } from 'ngx-socket-io';
+import { NotificationsService } from 'src/app/services/notifications.service';
 import Swal from 'sweetalert2';
+import { error } from 'console';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class CreateComponent implements OnInit {
   modeInput = 'start'
   precio: number | null = null;
 
-  constructor(private customerService: CustomerService, private renderer2: Renderer2, private socket: Socket) { }
+  constructor(private customerService: CustomerService, private renderer2: Renderer2, private socket: Socket, private notificationsService:NotificationsService) { }
 
 
   changeMode(mode: string): void {
@@ -52,6 +54,55 @@ export class CreateComponent implements OnInit {
   }
   }
 
+
+  botonPanico(): void {
+    // Obtener el ID y el nombre del usuario logueado
+    const session = JSON.parse(localStorage.getItem('session'));
+    const userId = session?._id;
+    const userName = session?.name; // Asegúrate de que el nombre esté almacenado en la sesión
+  
+    if (userId && userName) {
+      this.customerService.getCustomerByUserId(userId).subscribe(customer => {
+        if (customer && customer.contact_emergency) {
+          this.sendPanicEmail(customer.contact_emergency, userName);
+        } else {
+          console.error("no hay un contacto de emergencia")
+        }
+      }, error => {
+        console.error("el cliente no se encontró")
+      });
+    }
+  }
+  
+  private sendPanicEmail(emergencyEmail: string, userName: string): void {
+    const emailData = {
+      email: emergencyEmail,
+      subject: 'Botón de pánico',
+      body: `El usuario ${userName} se encuentra en peligro`
+    };
+  
+    this.notificationsService.sendPanic(emailData).subscribe({
+      next: (response) => {
+        console.log("correo enviado");
+        Swal.fire({
+          title: 'Correo Enviado',
+          text: 'Se ha enviado un correo a tu contacto de emergencia.',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      },
+      error: (error) => {
+        console.error("hubo un error mandando el correo de boton de panico");
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo enviar el correo al contacto de emergencia.',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        });
+      }
+    });
+  }
+  
 
   ngOnInit(): void {
     this.customerService.buildMap()
