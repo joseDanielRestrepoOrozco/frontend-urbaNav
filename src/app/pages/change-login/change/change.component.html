@@ -26,7 +26,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Contraseña actual" type="password" formControlName="password">
+                            <input id="password-input3" class="form-control" placeholder="Contraseña actual" type="password" formControlName="password">
+                            <div class="input-group-append">
+                              <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility3()">
+                                <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                              </span>
+                          </div>
                             <div
                                 *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
                                 <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
@@ -46,7 +51,7 @@
                                 <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility()">
                                   <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
                                 </span>
-                              </div>
+                            </div>
                               <div *ngIf="showPasswordRequirements">
                                 <ul class="password-requirements">
                                   <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8 caracteres</li>
@@ -68,7 +73,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                                <input id="password-input2" class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                                <div class="input-group-append">
+                                  <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility2()">
+                                    <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                  </span>
+                              </div>
                                 <div
                                     *ngIf="formGroupValidatorData.confirmPassword.errors && (formGroupValidatorData.confirmPassword.dirty || formGroupValidatorData.confirmPassword.touched)">
                                     <strong *ngIf="formGroupValidatorData.confirmPassword.errors.required" class="error-message" >Campo requerido</strong>

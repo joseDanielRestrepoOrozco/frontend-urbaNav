@@ -62,6 +62,22 @@ export class ChangeComponent implements OnInit {
     }
   }
 
+  togglePasswordVisibility2() {
+    const passwordInput = document.getElementById('password-input2') as HTMLInputElement;
+
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+  }
+
+  togglePasswordVisibility3() {
+    const passwordInput = document.getElementById('password-input3') as HTMLInputElement;
+
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+  }
+
   checkPasswordRequirements() {
     const password = this.formGroupValidatorData.newPassword.value;
   
@@ -120,12 +136,12 @@ export class ChangeComponent implements OnInit {
     const confirmPassword = this.formGroupValidatorData.confirmPassword.value;
   
     this.securityService.password2(currentPassword, newPassword, confirmPassword).subscribe(
-      success => {
-        if (success) {
+      (success:any) => {
+        if (success.success) {
           // La contraseña se cambió con éxito
           Swal.fire({
             title: 'Éxito',
-            text: 'Contraseña cambiada exitosamente',
+            text: success.message,
             icon: 'success',
             timer: 5000
           });
@@ -133,7 +149,7 @@ export class ChangeComponent implements OnInit {
         } else {
           Swal.fire({
             title: 'Error',
-            text: 'La contraseña actual no es correcta o las contraseñas nuevas no coinciden o estas poniendo la nueva contraseña igual que la actual',
+            text: success.message,
             icon: 'error',
             timer: 5000
           });
