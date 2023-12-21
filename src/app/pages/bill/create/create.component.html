@@ -4,75 +4,78 @@
 
 <div class="container-fluid mt--7">
 
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
-                    <h3 *ngIf="creationMode" class="mb-0">Crear Factura</h3>
-                    <h3 *ngIf="!creationMode" class="mb-0">Actualizar Factura</h3>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="formGroupValidator">
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Price:</label>
-                            </div>
-                            <div class="col-9">
-                                <input class="form-control" type="number" formControlName="price">
-                                <div
-                                    *ngIf="formGroupValidatorData.price.errors && (formGroupValidatorData.price.dirty || formGroupValidatorData.price.touched)">
-                                    <strong *ngIf="formGroupValidatorData.price.errors.required">Campo
-                                        requerido</strong>
-                                    <strong *ngIf="formGroupValidatorData.price.errors.min">El valor debe ser superior a
-                                        4500</strong>
-                                    <strong *ngIf="formGroupValidatorData.price.errors.max">El valor debe ser inferior a
-                                        200000</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Fecha:</label>
-                            </div>
-                            <div class="col-9">
-                                <input type="date" class="form-control" formControlName="date">
-                                <div *ngIf="formGroupValidatorData.date.errors && (formGroupValidatorData.date.dirty || formGroupValidatorData.date.touched)">
-                                <strong *ngIf="formGroupValidatorData.date.errors.required">Campo requerido</strong>
-                            </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-                                <label>Viaje:</label>
-                            </div>
-                            <div class="col-9">
-                                <select class="form-control" formControlName="trip_id">
-                                    <option *ngFor="let actualBill of bills" value="{{actualBill.trip_id}}">
-                                        {{actualBill.trip_id}}</option>
-                                </select>
-                                <div *ngIf="formGroupValidatorData.trip_id.errors && (formGroupValidatorData.trip_id.dirty || formGroupValidatorData.trip_id.touched)">
-                                <strong *ngIf="formGroupValidatorData.trip_id.errors.required">Campo requerido</strong>
-                            </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-3">
-
-                            </div>
-                            <div class="col-9">
-                                <button *ngIf="creationMode" type="button" class="btn btn-primary btn-block"
-                                    (click)="create()">Crear</button>
-                                <button *ngIf="!creationMode" type="button" class="btn btn-primary btn-block"
-                                    (click)="update()">Actualizar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 *ngIf="creationMode" class="mb-0">Crear Factura</h3>
+          <h3 *ngIf="!creationMode" class="mb-0">Actualizar Factura</h3>
         </div>
+        <div class="card-body">
+          <form [formGroup]="formGroupValidator">
+            <div class="row">
+              <div class="col-3">
+                <label>Price:</label>
+              </div>
+              <div class="col-9">
+                <input class="form-control" type="number" formControlName="price">
+                <div
+                  *ngIf="formGroupValidatorData.price.errors && (formGroupValidatorData.price.dirty || formGroupValidatorData.price.touched)">
+                  <strong *ngIf="formGroupValidatorData.price.errors.required">Campo
+                    requerido</strong>
+                  <strong *ngIf="formGroupValidatorData.price.errors.min">El valor debe ser superior a
+                    4500</strong>
+                  <strong *ngIf="formGroupValidatorData.price.errors.max">El valor debe ser inferior a
+                    200000</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+                <label>Fecha:</label>
+              </div>
+              <div class="col-9">
+                <input type="date" class="form-control" formControlName="date">
+                <div
+                  *ngIf="formGroupValidatorData.date.errors && (formGroupValidatorData.date.dirty || formGroupValidatorData.date.touched)">
+                  <strong *ngIf="formGroupValidatorData.date.errors.required">Campo requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+                <label>Viaje:</label>
+              </div>
+              <div class="col-9">
+                <select class="form-control" formControlName="trip_id">
+                  <option *ngFor="let actualBill of bills" value="{{actualBill.trip_id}}">
+                    {{actualBill.trip_id}}</option>
+                </select>
+                <div
+                  *ngIf="formGroupValidatorData.trip_id.errors && (formGroupValidatorData.trip_id.dirty || formGroupValidatorData.trip_id.touched)">
+                  <strong *ngIf="formGroupValidatorData.trip_id.errors.required">Campo
+                    requerido</strong>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-3">
+
+              </div>
+              <div class="col-9">
+                <button *ngIf="creationMode" type="button" class="btn btn-primary btn-block"
+                  (click)="create()">Crear</button>
+                <button *ngIf="!creationMode" type="button" class="btn btn-primary btn-block"
+                  (click)="update()">Actualizar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>

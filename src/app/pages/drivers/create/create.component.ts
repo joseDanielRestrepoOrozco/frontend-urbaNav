@@ -38,7 +38,11 @@ export class CreateComponent implements OnInit {
 
     this.customerService.cbAddress.subscribe((getPoint) => {
       console.log(getPoint)
+    this.customerService.cbAddress.subscribe((getPoint) => {
+      console.log(getPoint)
       this.wayPoints.point = getPoint.center;
+      this.onSubmit()
+    })
       this.onSubmit()
     })
 
@@ -47,6 +51,7 @@ export class CreateComponent implements OnInit {
   onSubmit() {
     let conductor = null
     this.ServiceDriver.showForUser(JSON.parse(localStorage.getItem('session'))._id).subscribe((msg) => {
+    this.ServiceDriver.showForUser(JSON.parse(localStorage.getItem('session'))._id).subscribe((msg) => {
       console.log(msg)
 
       msg.is_available = true
@@ -54,15 +59,19 @@ export class CreateComponent implements OnInit {
       this.ServiceDriver.update(msg)
     })
     this.socket.emit('coords', { point: this.wayPoints.point, conductor: localStorage.getItem('session') })
+    this.socket.emit('coords', { point: this.wayPoints.point, conductor: localStorage.getItem('session') })
 
+    this.socket.fromEvent('position').subscribe(async (msg: any) => {
     this.socket.fromEvent('position').subscribe(async (msg: any) => {
       console.log(msg)
       let cliente_user = msg.session
       let conductor_user = JSON.parse(localStorage.getItem('session'))
       console.log(cliente_user, conductor_user)
       let cliente: any
+      let cliente: any
 
       console.log()
+      this.ServiceDriver.showForUserCustomer(cliente_user._id).subscribe(async (data) => {
       this.ServiceDriver.showForUserCustomer(cliente_user._id).subscribe(async (data) => {
         cliente = data
         console.log(cliente, conductor)
@@ -125,7 +134,6 @@ aqui NO va el boton de panico
 
 
   }
-
 }
 
 export class WayPoints {

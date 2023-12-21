@@ -1,0 +1,272 @@
+<div class="create-backround">
+  <div class="header pb-8 pt-5 pt-md-8">
+  </div>
+  <!-- Page content -->
+  <div class="container-fluid mt--7">
+    <!-- Table -->
+    <div class="row">
+      <div class="col">
+        <div class="card shadow mb-6">
+          <div class="card-header border-0">
+            <h3 class="mb--3 textR">Registrarse como Conductor</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="formGroupValidator">
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Nombre</label>
+                      <input type="text" class="form-control form-control-alternative" formControlName="name"
+                        placeholder="Nombre">
+                      <div
+                        *ngIf="formGroupValidatorData.name.errors && (formGroupValidatorData.name.dirty || formGroupValidatorData.name.touched)">
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.name.errors.required">**Campo
+                          requerido**</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Apellido</label>
+                      <input type="text" class="form-control form-control-alternative" placeholder="Apellido"
+                        formControlName="surname">
+                      <div
+                        *ngIf="formGroupValidatorData.surname.errors && (formGroupValidatorData.surname.dirty || formGroupValidatorData.surname.touched)">
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.surname.errors.required">**Campo
+                          requerido**</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Teléfono</label>
+                      <input type="number" class="form-control form-control-alternative" placeholder="Teléfono"
+                        formControlName="phone">
+                      <div
+                        *ngIf="formGroupValidatorData.phone.errors && (formGroupValidatorData.phone.dirty || formGroupValidatorData.phone.touched)">
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.phone.errors.required">**Campo
+                          requerido**</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Correo Electrónico</label>
+                      <input type="text" class="form-control form-control-alternative" placeholder="E-mail"
+                        formControlName="email">
+                      <div
+                        *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)">
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.email.errors.required">**Campo
+                          requerido**</strong>
+                        <strong class="text-sm text-red"
+                          *ngIf="formGroupValidatorData.email.errors.email">**ejemplo@correo.com**</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Fecha Nacimiento</label>
+                      <input type="date" class="form-control form-control-alternative" placeholder="dd/mm/yyyy"
+                        formControlName="birthdate">
+
+                      <div
+                        *ngIf="formGroupValidatorData.birthdate.errors && (formGroupValidatorData.birthdate.dirty || formGroupValidatorData.birthdate.touched)">
+                        <strong class="text-sm text-red"
+                          *ngIf="formGroupValidatorData.birthdate.errors.required">**Campo
+                          requerido**</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Identificador de tu Vehículo</label>
+                      <input type="number" class="form-control form-control-alternative" placeholder="ID Vehículo"
+                        formControlName="vehicle_id">
+                      <div
+                        *ngIf="formGroupValidatorData.vehicle_id.errors && (formGroupValidatorData.vehicle_id.dirty || formGroupValidatorData.vehicle_id.touched)">
+                        <strong class="text-sm text-red"
+                          *ngIf="formGroupValidatorData.vehicle_id.errors.required">**Campo requerido**</strong>
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.vehicle_id.errors.min">**debe ser
+                          superior a 0**</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date-release">Contraseña</label>
+                      <input type="text" class="form-control form-control-alternative" placeholder="Contraseña"
+                        formControlName="password" (focus)="togglePasswordRequirementsVisibility()"
+                        (blur)="togglePasswordRequirementsVisibility()" (input)="checkPasswordRequirements()">
+                      <div *ngIf="showPasswordRequirements">
+                        <ul class="password-requirements">
+                          <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8 caracteres</li>
+                          <li><input type="checkbox" [disabled]="true" id="uppercase-checkbox"> Al menos una mayúscula
+                          </li>
+                          <li><input type="checkbox" [disabled]="true" id="lowercase-checkbox"> Al menos una minúscula
+                          </li>
+                          <li><input type="checkbox" [disabled]="true" id="number-checkbox"> Al menos un número</li>
+                          <li><input type="checkbox" [disabled]="true" id="special-checkbox"> Al menos un carácter
+                            especial
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
+                        <strong class="text-sm text-red" *ngIf="formGroupValidatorData.password.errors.required">**Campo
+                          requerido**</strong>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <!-- <button type="button" class="btn btn-info btn-block">Crear</button> -->
+                  <button type="button" class="btn btn-info btn-block" (click)="create()">Registrarse</button>
+                  <!-- <button *ngIf="!creationMode" type="button" class="btn btn-info btn-block"
+                    (click)="update()">Actualizar</button> -->
+                </div>
+              </div>
+            </form>
+            <!-- <form [formGroup]="formGroupValidator">
+              <div class="row">
+                <div class="col-3">
+                  <label>Nombre:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="text" formControlName="name">
+                  <div
+                    *ngIf="formGroupValidatorData.name.errors && (formGroupValidatorData.name.dirty || formGroupValidatorData.name.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.name.errors.required">Campo
+                      requerido</strong>
+                  </div>
+                </div>
+              </div>
+
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Apellido:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="text" formControlName="surname">
+                  <div
+                    *ngIf="formGroupValidatorData.surname.errors && (formGroupValidatorData.surname.dirty || formGroupValidatorData.surname.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.surname.errors.required">Campo
+                      requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Telefono:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="number" formControlName="phone">
+                  <div
+                    *ngIf="formGroupValidatorData.phone.errors && (formGroupValidatorData.phone.dirty || formGroupValidatorData.phone.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.phone.errors.required">Campo
+                      requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Fecha de Nacimiento:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="date" formControlName="birthdate">
+                  <div
+                    *ngIf="formGroupValidatorData.birthdate.errors && (formGroupValidatorData.birthdate.dirty || formGroupValidatorData.birthdate.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.birthdate.errors.required">Campo
+                      requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Correo:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <input class="form-control" type="email" formControlName="email">
+                  <div
+                    *ngIf="formGroupValidatorData.email.errors && (formGroupValidatorData.email.dirty || formGroupValidatorData.email.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.email.errors.required">Campo
+                      requerido</strong>
+                    <strong *ngIf="formGroupValidatorData.email.errors.email">Este campo debe ser un
+                      email</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+                  <label>Contraseña:</label>
+                </div>
+                <div class="col-9 position-relative">
+                  <div class="input-group">
+                    <input id="password-input" class="form-control" type="password" formControlName="password"
+                      (focus)="togglePasswordRequirementsVisibility()" (blur)="togglePasswordRequirementsVisibility()"
+                      (input)="checkPasswordRequirements()">
+                    <div class="input-group-append">
+                      <span class="input-group-text"
+                        [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'"
+                        (click)="togglePasswordVisibility()">
+                        <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div *ngIf="showPasswordRequirements">
+                    <ul class="password-requirements">
+                      <li><input type="checkbox" [disabled]="true" id="length-checkbox"> Mínimo 8
+                        caracteres</li>
+                      <li><input type="checkbox" [disabled]="true" id="uppercase-checkbox"> Al
+                        menos una mayúscula</li>
+                      <li><input type="checkbox" [disabled]="true" id="lowercase-checkbox"> Al
+                        menos una minúscula</li>
+                      <li><input type="checkbox" [disabled]="true" id="number-checkbox"> Al menos
+                        un número</li>
+                      <li><input type="checkbox" [disabled]="true" id="special-checkbox"> Al menos
+                        un carácter especial</li>
+                    </ul>
+                  </div>
+                  <div
+                    *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)"
+                    class="error-message">
+                    <strong *ngIf="formGroupValidatorData.password.errors.required">Campo
+                      requerido</strong>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-3">
+
+                </div>
+                <div class="col-9">
+                  <button type="button" class="btn btn-primary btn-block" (click)="create()">Crear</button>
+                </div>
+              </div>
+            </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,15 @@
 <div class="login-backround">
-    <div class="header py-7 py-lg-8">
-      <div class="container">
-        <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">Cambio de contraseña</h1>
-            </div>
+  <div class="header py-7 py-lg-8">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <h1 class="text-white">Cambio de contraseña</h1>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
@@ -26,7 +26,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Contraseña actual" type="password" formControlName="password">
+                            <input id="password-input3" class="form-control" placeholder="Contraseña actual" type="password" formControlName="password">
+                            <div class="input-group-append">
+                              <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility3()">
+                                <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                              </span>
+                          </div>
                             <div
                                 *ngIf="formGroupValidatorData.password.errors && (formGroupValidatorData.password.dirty || formGroupValidatorData.password.touched)">
                                 <strong *ngIf="formGroupValidatorData.password.errors.required" class="error-message" >Campo requerido</strong>
@@ -68,7 +73,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                                <input id="password-input2" class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                                <div class="input-group-append">
+                                  <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility2()">
+                                    <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                  </span>
+                              </div>
                                 <div
                                     *ngIf="formGroupValidatorData.confirmPassword.errors && (formGroupValidatorData.confirmPassword.dirty || formGroupValidatorData.confirmPassword.touched)">
                                     <strong *ngIf="formGroupValidatorData.confirmPassword.errors.required" class="error-message" >Campo requerido</strong>
@@ -86,6 +96,3 @@
         </div>
     </div>
 </div>
-
-
-

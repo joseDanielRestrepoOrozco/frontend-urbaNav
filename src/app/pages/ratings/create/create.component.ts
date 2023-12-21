@@ -102,7 +102,7 @@ export class CreateComponent implements OnInit {
       return false;
     }
 
-      this.theRating = this.ratingData();
+    this.theRating = this.ratingData();
 
     this.ratingsService.update(this.formGroupValidator.value).subscribe((jsonResponse: any) => {
       Swal.fire({

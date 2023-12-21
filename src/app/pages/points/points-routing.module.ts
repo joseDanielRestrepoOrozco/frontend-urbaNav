@@ -6,7 +6,7 @@ import { CreateComponent } from './create/create.component';
 const routes: Routes = [
     { path: "list", component: ListComponent },
     { path: "create", component: CreateComponent },
-    //   { path: "update/:id", component: CreateComponent }
+    { path: "update/:id", component: CreateComponent }
 ]; // configuracion rutas internas del modulo de puntos
 
 @NgModule({
