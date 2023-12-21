@@ -53,7 +53,12 @@
                       <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                      <input id="password-input2" class="form-control" placeholder="Confirmar contraseña" type="password" formControlName="confirmPassword">
+                      <div class="input-group-append">
+                        <span class="input-group-text" [attr.aria-hidden]="passwordField.type === 'password' ? 'true' : 'false'" (click)="togglePasswordVisibility2()">
+                          <i class="fa" [ngClass]="passwordField.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        </span>
+                      </div>
                       <div
                           *ngIf="formGroupValidatorData.confirmPassword.errors && (formGroupValidatorData.confirmPassword.dirty || formGroupValidatorData.confirmPassword.touched)">
                           <strong *ngIf="formGroupValidatorData.confirmPassword.errors.required" class="error-message" >Campo requerido</strong>

@@ -58,6 +58,14 @@ export class CambioComponent implements OnInit {
     }
   }
 
+  togglePasswordVisibility2() {
+    const passwordInput = document.getElementById('password-input2') as HTMLInputElement;
+
+    if (passwordInput) {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+  }
+
   checkPasswordRequirements() {
     const password = this.formGroupValidatorData.password.value;
   
