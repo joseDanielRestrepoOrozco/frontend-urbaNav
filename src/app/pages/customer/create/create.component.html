@@ -1,32 +1,30 @@
+<div class="table-responsive">
+  <div id="map" #asMap class="map" class="map"></div>
 
+</div>
 
-          <div class="table-responsive">
-                <div id="map" #asMap class="map" class="map"></div>
-            
-          </div>
+<div class="box-inputs">
+  <!-- Input para el precio -->
+  <div class="price-input">
+    <div class="mock-label">Precio</div>
+    <input type="number" [(ngModel)]="precio" placeholder="Ingrese el precio" />
+  </div>
 
-          <div class="box-inputs">
-            <!-- Input para el precio -->
-            <div class="price-input">
-                <div class="mock-label">Precio</div>
-                <input type="number" [(ngModel)]="precio" placeholder="Ingrese el precio" />
-            </div>
-        
-            <!-- Inicio -->
-            <div>
-                <div class="mock-label">Inicio</div>
-                <div id="geocoder" #asGeoCoder class="geocoder"></div>
-            </div>
-        
-            <!-- Final -->
-            <div>
-                <div class="mock-label">Final</div>
-                <div id="geocoder2" #asGeoCoder2 class="geocoder2"></div>
-            </div>
-        </div>
-          <div class="box-input">
+  <!-- Inicio -->
+  <div>
+    <div class="mock-label">Inicio</div>
+    <div id="geocoder" #asGeoCoder class="geocoder"></div>
+  </div>
 
-            <button class="btn btn-warning" (click)="seguir()">Seguir ruta</button>
-            <button class="btn btn-warning" (click)="driver()">Encontrar Conductor</button>
-            <button class="btn btn-danger" (click)="botonPanico()">Boton de pánico</button>
-          </div>
+  <!-- Final -->
+  <div>
+    <div class="mock-label">Final</div>
+    <div id="geocoder2" #asGeoCoder2 class="geocoder2"></div>
+  </div>
+</div>
+<div class="box-input">
+
+  <button class="btn btn-warning" (click)="seguir()">Seguir ruta</button>
+  <button class="btn btn-warning" (click)="driver()">Encontrar Conductor</button>
+  <button class="btn btn-danger" (click)="botonPanico()">Boton de pánico</button>
+</div>

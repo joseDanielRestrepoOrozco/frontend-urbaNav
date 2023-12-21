@@ -12,38 +12,38 @@ import { SecurityService } from 'src/app/services/security.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  theUser:User;
+  theUser: User;
   subscription: Subscription;
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef,
-                                   private router: Router,
-                                   private securityService: SecurityService) {
+  constructor(location: Location, private element: ElementRef,
+    private router: Router,
+    private securityService: SecurityService) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle)
-    this.subscription = this.securityService.getUser().subscribe(data =>{
-      this.theUser=data
+    this.subscription = this.securityService.getUser().subscribe(data => {
+      this.theUser = data
     });
   }
-  getTitle(){
+  getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
-    if(titlee.charAt(0) === '#'){
-        titlee = titlee.slice( 1 );
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice(1);
     }
 
-    for(var item = 0; item < this.listTitles.length; item++){
-        if(this.listTitles[item].path === titlee){
-            return this.listTitles[item].title;
-        }
+    for (var item = 0; item < this.listTitles.length; item++) {
+      if (this.listTitles[item].path === titlee) {
+        return this.listTitles[item].title;
+      }
     }
     return 'Dashboard';
   }
 
-  logout(){
+  logout() {
     console.log("Cerrando cuenta")
     this.securityService.logout()
     this.router.navigate(["/dashboard"])

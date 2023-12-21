@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,11 @@ import { environment } from 'src/environments/environment';
 export class DriverService {
 
   constructor(private http: HttpClient) { }
+
+  create(driver: User) {
+    delete driver._id
+    return this.http.post(`${environment.url_ms_urbannav}/drivers`, driver);
+  }
 
   update(driver) {
     return this.http.put(`${environment.url_ms_urbannav}/drivers/${driver.id}`, driver);

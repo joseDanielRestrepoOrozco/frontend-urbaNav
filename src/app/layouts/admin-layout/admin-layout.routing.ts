@@ -85,7 +85,7 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/points/points.module').then(point => point.PointsModule)
         }],
-        canActivate: [AuthenticatedGuard] &&  [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
     {
         path: 'permissions',
@@ -93,7 +93,7 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/permissions/permissions.module').then(m => m.PermissionsModule)
         }],
-        canActivate:[AuthenticatedGuard] &&  [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
 
     {
@@ -102,7 +102,7 @@ export const AdminLayoutRoutes: Routes = [
             path: '',
             loadChildren: () => import('src/app/pages/users/users.module').then(m => m.UsersModule)
         }],
-        canActivate: [AuthenticatedGuard] &&  [AdministratorGuard]
+        canActivate: [AuthenticatedGuard] && [AdministratorGuard]
     },
     {
         path: 'routes',

@@ -34,16 +34,17 @@
             </thead>
             <tbody>
               <tr *ngFor="let actualUser of users">
-                  <td>{{actualUser._id}}</td>
-                  <td>{{actualUser.name}}</td>
-                  <td>{{actualUser.surname}}</td>
-                  <td>{{actualUser.phone}}</td>
-                  <td>{{actualUser.birthdate}}</td>
-                  <td>{{actualUser.email}}</td>
-                  <td>{{actualUser.role?.name}}</td>
+                <td>{{actualUser._id}}</td>
+                <td>{{actualUser.name}}</td>
+                <td>{{actualUser.surname}}</td>
+                <td>{{actualUser.phone}}</td>
+                <td>{{actualUser.birthdate}}</td>
+                <td>{{actualUser.email}}</td>
+                <td>{{actualUser.role?.name}}</td>
                 <th>
                   <button type="button" class="btn btn-primary" (click)="edit(actualUser._id)">Editar</button>
-                  <button type="button" class="btn btn-danger" (click)="delete(actualUser._id,actualUser.role?.name)">Eliminar</button>
+                  <button type="button" class="btn btn-danger"
+                    (click)="delete(actualUser._id,actualUser.role?.name)">Eliminar</button>
                 </th>
               </tr>
             </tbody>
@@ -53,6 +54,3 @@
     </div>
   </div>
 </div>
-
-
-
